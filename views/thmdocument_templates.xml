@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="assets_backend" name="thmdocument assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/thmdocument/static/src/css/thmdocument.css"/>
+                <script type="text/javascript" src="/thmdocument/static/src/js/thmdocument.js"></script>
+                <script type="text/javascript" src="/thmdocument/static/src/js/tour.js"></script>
+                <link rel="stylesheet" href="/thmdocument/static/src/less/thmdocument_dashboard.less"/>
+
+                <script type="text/javascript" src="/thmdocument/static/src/js/web_planner_thmdocument.js"></script>
+            </xpath>
+        </template>
+</odoo>

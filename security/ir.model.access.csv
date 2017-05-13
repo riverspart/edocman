@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_thmdocument_thmdocument,thmdocument.thmdocument,model_thmdocument_thmdocument,thmdocument.group_thmdocument_user,1,0,0,0
+access_thmdocument_thmdocument_manager,thmdocument.thmdocument,model_thmdocument_thmdocument,thmdocument.group_thmdocument_manager,1,1,1,1
+access_account_analytic_account_user,account.analytic.account,analytic.model_account_analytic_account,thmdocument.group_thmdocument_user,1,0,0,0
+access_account_analytic_account_manager,account.analytic.account,analytic.model_account_analytic_account,thmdocument.group_thmdocument_manager,1,1,1,1
+access_thmdocument_task_type_user,thmdocument.task.type.user,model_thmdocument_task_type,base.group_user,1,0,0,0
+access_thmdocument_task_type_thmdocument_user,thmdocument.task.type.thmdocument.user,model_thmdocument_task_type,thmdocument.group_thmdocument_user,1,0,0,0
+access_thmdocument_task_type_manager,thmdocument.task.type manager,model_thmdocument_task_type,thmdocument.group_thmdocument_manager,1,1,1,1
+access_thmdocument_task,thmdocument.task,model_thmdocument_task,thmdocument.group_thmdocument_user,1,1,1,1
+access_report_thmdocument_task_user,report.thmdocument.task.user,model_report_thmdocument_task_user,thmdocument.group_thmdocument_manager,1,1,1,1
+access_partner_task user,base.res.partner user,base.model_res_partner,thmdocument.group_thmdocument_user,1,0,0,0
+access_task_on_partner,thmdocument.task on partners,model_thmdocument_task,base.group_user,1,0,0,0
+access_thmdocument_on_partner,thmdocument.thmdocument on partners,model_thmdocument_thmdocument,base.group_user,1,0,0,0
+access_account_analytic_line_thmdocument,account.analytic.line thmdocument,analytic.model_account_analytic_line,thmdocument.group_thmdocument_manager,1,1,1,1
+access_resource_calendar,thmdocument.resource_calendar user,resource.model_resource_calendar,thmdocument.group_thmdocument_user,1,0,0,0
+access_resource_calendar_attendance,thmdocument.resource_calendar_attendance user,resource.model_resource_calendar_attendance,thmdocument.group_thmdocument_user,1,0,0,0
+access_resource_calendar_leaves_user,resource.calendar.leaves user,resource.model_resource_calendar_leaves,thmdocument.group_thmdocument_user,1,1,1,1
+access_thmdocument_tags_all,thmdocument.thmdocument_tags_all,model_thmdocument_tags,,1,0,0,0
+access_thmdocument_tags_manager,thmdocument.thmdocument_tags_manager,model_thmdocument_tags,thmdocument.group_thmdocument_manager,1,1,1,1
+access_mail_alias,mail.alias,mail.model_mail_alias,thmdocument.group_thmdocument_manager,1,1,1,1
