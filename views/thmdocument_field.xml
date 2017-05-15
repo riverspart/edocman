@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="act_thmdocument_thmdocument_2_thmdocument_field_all">
+            <field name="name">Linh vuc</field>
+            <field name="res_model">thmdocument.field</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first record
+                </p>
+            </field>
+        </record>
+
+	<!-- Form view -->
+       <record id="view_thmdocument_field_form" model="ir.ui.view">
+            <field name="name">thmdocument.field.form</field>
+            <field name="model">thmdocument.field</field>
+            <field name="arch" type="xml">
+                <form string="Field record">
+		    <group>
+			<field name="name"/>
+			<field name="lastModified"/>
+		    </group>
+                </form>
+            </field>
+        </record>
+
+	<!-- tree (list) view-->
+       <record id="view_thmdocument_field_tree" model="ir.ui.view">
+            <field name="name">thmdocument.field.tree</field>
+            <field name="model">thmdocument.field</field>
+            <field name="arch" type="xml">
+                <tree string="Field records">
+			<field name="name"/>
+			<field name="lastModified"/>
+                </tree>
+            </field>
+        </record>
+
+       <menuitem name="Scheduler demo" id="main_scheduler_demo_menu" sequence="70"   web_icon="survey,static/description/icon.png"/>
+
+
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <!-- Reporting menus -->
+        <menuitem id="menu_thmdocument_field" name="Field"
+             groups="group_thmdocument_manager"
+            parent="menu_thmdocument_config" sequence="99"
+            action="act_thmdocument_thmdocument_2_thmdocument_field_all"
+        />
+
+
+    </data>
+</odoo>

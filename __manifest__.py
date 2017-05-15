@@ -42,6 +42,7 @@ Dashboard / Reports for Thmdocument Management will include:
         'views/res_partner_views.xml',
         'views/res_config_views.xml',
         'views/thmdocument_templates.xml',
+        'views/thmdocument_field.xml',
         'views/tour_views.xml',
         'data/web_planner_data.xml',
         'data/thmdocument_mail_template_data.xml',

@@ -7,6 +7,7 @@ from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
 
+
 class ThmdocumentTaskType(models.Model):
     _name = 'thmdocument.task.type'
     _description = 'Task Stage'
@@ -52,7 +53,6 @@ class Thmdocument(models.Model):
     _inherits = {'account.analytic.account': "analytic_account_id"}
     _order = "sequence, name, id"
     _period_number = 5
-
     def get_alias_model_name(self, vals):
         return vals.get('alias_model', 'thmdocument.task')
 
@@ -167,7 +167,6 @@ class Thmdocument(models.Model):
 
     # Lambda indirection method to avoid passing a copy of the overridable method when declaring the field
     _alias_models = lambda self: self._get_alias_models()
-
     active = fields.Boolean(default=True,
         help="If the active field is set to False, it will allow you to hide the thmdocument without removing it.")
     sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Thmdocuments.")
@@ -346,7 +345,7 @@ class Task(models.Model):
              " * Normal is the default situation\n"
              " * Blocked indicates something is preventing the progress of this task\n"
              " * Ready for next stage indicates the task is ready to be pulled to the next stage")
-    create_date = fields.Datetime(index=True)
+    create_date = fields.Datetime(index=True , copy=False, readonly=True)
     write_date = fields.Datetime(index=True)  #not displayed in the view but it might be useful with base_action_rule module (and it needs to be defined first for that)
     date_start = fields.Datetime(string='Starting Date',
     default=fields.Datetime.now,
@@ -354,6 +353,26 @@ class Task(models.Model):
     date_end = fields.Datetime(string='Ending Date', index=True, copy=False)
     date_assign = fields.Datetime(string='Assigning Date', index=True, copy=False, readonly=True)
     date_deadline = fields.Date(string='Deadline', index=True, copy=False)
+    # tungnt start
+    ho_so_kem_theo = fields.Html(string='Ho so kem theo')
+    de_xuat = fields.Html(string='De xuat')
+    opinion = fields.Html(string='Opinion')
+    trich_yeu = fields.Html(string='Trich yeu')
+    code = fields.Char(string='Code', required=True, index=True, default='/TTr-CNTT')
+    create_uid = fields.Many2one('res.users',
+                              string='Nguoi tao',
+                              default=lambda self: self.env.uid,
+                              index=True, track_visibility='always' , readonly=True)
+    linh_vuc_id = fields.Many2one('thmdocument.field',
+                                 string='Linh Vuc',
+                                 default=lambda self: self.env.uid,
+                                 index=True, track_visibility='always')
+    thmdocument_related_ids = fields.Many2many('thmdocument.task','thmdocument_task_rel', 'thmdocument_task_id', 'thmdocument_task_related_id', string='Van ban lien quan')
+
+    tra_lai_ban_goc = fields.Boolean(default=False,
+                            help="Tra lai ban goc.")
+    # tungnt end
+
     date_last_stage_update = fields.Datetime(string='Last Stage Update',
         default=fields.Datetime.now,
         index=True,
@@ -666,9 +685,12 @@ class AccountAnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
     _description = 'Analytic Account'
 
-    use_tasks = fields.Boolean(string='Use Tasks', help="Check this box to manage internal activities through this thmdocument")
+    use_tasks = fields.Boolean(string='Use Tasks',
+                               help="Check this box to manage internal activities through this thmdocument")
+
+
     company_uom_id = fields.Many2one('product.uom', related='company_id.thmdocument_time_mode_id', string="Company UOM")
-    thmdocument_ids = fields.One2many('thmdocument.thmdocument', 'analytic_account_id', string='Thmdocuments')
+    thmdocument_ids = fields.One2many('thmdocument.thmdocument', 'analytic_account_id', string='Loai van ban')
     thmdocument_count = fields.Integer(compute='_compute_thmdocument_count', string='Thmdocument Count')
 
     def _compute_thmdocument_count(self):
@@ -694,7 +716,7 @@ class AccountAnalyticAccount(models.Model):
             thmdocument_values = {
                 'name': vals.get('name'),
                 'analytic_account_id': self.id,
-                'use_tasks': True,
+                'use_tasks': True
             }
             return Thmdocument.create(thmdocument_values).id
         return False
