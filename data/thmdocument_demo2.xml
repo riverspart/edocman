@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Users -->
+        <record id="base.user_demo" model="res.users">
+            <field name="groups_id" eval="[(4, ref('group_thmdocument_manager'))]"/>
+        </record>
+
+        <!-- Email templates -->
+        <record id="mail_template_data_thmdocument_task" model="mail.template">
+            <field name="name">Task: Reception Acknowledgment</field>
+            <field name="subject">Reception of ${object.name}</field>
+            <field name="model_id" ref="thmdocument.model_thmdocument_task"/>
+            <field name="use_default_to" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name or 'customer'},</p>
+<p>Thank you for your enquiry.<br /></p>
+<p>If you have any questions, please let us know.</p>
+<p>Best regards,</p>]]></field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <!-- Stages -->
+        <record id="thmdocument_stage_0" model="thmdocument.task.type">
+            <field name="sequence">1</field>
+            <field name="name">Khoi Tao</field>
+            <field name="legend_blocked">Not validated</field>
+            <field name="legend_priority">Use the priority for tasks related to gold customers</field>
+            <field name="mail_template_id" ref="thmdocument.mail_template_data_thmdocument_task"/>
+        </record>
+        <record id="thmdocument_stage_1" model="thmdocument.task.type">
+            <field name="sequence">2</field>
+            <field name="name">Lanh Dao Don Vi</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
+        </record>
+        <record id="thmdocument_stage_2" model="thmdocument.task.type">
+            <field name="sequence">3</field>
+            <field name="name">Van Thu</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
+        </record>
+        <record id="thmdocument_stage_3" model="thmdocument.task.type">
+            <field name="sequence">4</field>
+            <field name="name">Thu Ki Chuyen Mon</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
+        </record>
+        <record id="thmdocument_stage_4" model="thmdocument.task.type">
+            <field name="sequence">5</field>
+            <field name="name">CT - TGD</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
+        </record>
+        <record id="thmdocument_stage_5" model="thmdocument.task.type">
+            <field name="sequence">6</field>
+            <field name="name">Done</field>
+            <field name="fold" eval="True"/>
+        </record>
+        <record id="thmdocument_stage_6" model="thmdocument.task.type">
+            <field name="sequence">7</field>
+            <field name="name">Cancelled</field>
+            <field name="legend_done">Ready to reopen</field>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="thmdocument_thmdocument_1" model="thmdocument.thmdocument">
+            <field name="date_start" eval="time.strftime('%Y-%m-01 10:00:00')"/>
+            <field name="name">To trinh noi bo</field>
+            <field name="color">3</field>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="alias_model">thmdocument.task</field>
+            <field name="type_ids" eval="[(4, ref('thmdocument_stage_0')), (4, ref('thmdocument_stage_1')), (4, ref('thmdocument_stage_2')), (4, ref('thmdocument_stage_3')), (4, ref('thmdocument_stage_4')), (4, ref('thmdocument_stage_5')), (4, ref('thmdocument_stage_6'))]"/>
+        </record>
+
+        <!-- Channel -->
+        <record id="mail_channel_thmdocument_task" model="mail.channel">
+            <field name="name">Thmdocuments &amp; Tasks</field>
+            <field name="group_public_id" ref="group_thmdocument_user"/>
+            <field name="group_ids" eval="[(4, ref('group_thmdocument_user'))]"/>
+        </record>
+
+
+    </data>
+</odoo>

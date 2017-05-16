@@ -413,6 +413,7 @@ action = model.activate_sample_thmdocument()
                                     <field name="create_uid"/>
                                     <field name="tra_lai_ban_goc"/>
                                     <field name="thmdocument_related_ids" widget="many2many_tags"/>
+                                    <field name="files_ids" widget="many2many_tags"/>
                                 </group>
                             </group>
                         </page>

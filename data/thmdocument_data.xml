@@ -138,207 +138,96 @@
             <field name="thmdocument_ids" eval="[(4, ref('thmdocument_thmdocument_data'))]"/>
         </record>
 
-        <record forcecreate="False" id="thmdocument_task_data_0" model="thmdocument.task">
+        <record forcecreate="False" id="thmdocument_field_data_0" model="thmdocument.field">
+            <field name="name">Cong van doan</field>
+        </record>
+
+        <record forcecreate="False" id="thmdocument_field_data_1" model="thmdocument.field">
+            <field name="name">Cong van dang</field>
+        </record>
+
+        <record forcecreate="False" id="thmdocument_field_data_2" model="thmdocument.field">
+            <field name="name">San xuat kinh doanh</field>
+        </record>
+
+        <!-- Users -->
+        <!--<record id="base.user_demo" model="res.users">-->
+            <!--<field name="groups_id" eval="[(4, ref('group_thmdocument_manager'))]"/>-->
+        <!--</record>-->
+
+        <!-- Email templates -->
+        <record id="mail_template_data_thmdocument_task" model="mail.template">
+            <field name="name">Task: Reception Acknowledgment</field>
+            <field name="subject">Reception of ${object.name}</field>
+            <field name="model_id" ref="thmdocument.model_thmdocument_task"/>
+            <field name="use_default_to" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name or 'customer'},</p>
+<p>Thank you for your enquiry.<br /></p>
+<p>If you have any questions, please let us know.</p>
+<p>Best regards,</p>]]></field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <!-- Stages -->
+        <record id="thmdocument_stage_0" model="thmdocument.task.type">
             <field name="sequence">1</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Welcome to Odoo</field>
-            <field name="description">Welcome! This thmdocument has the objective to show you all the main feature in the thmdocument app. Each card will help you to manage your thmdocuments easily in a few minutes.</field>
-            <field name="color">2</field>
-            <field name="stage_id" ref="thmdocument_stage_data_0"/>
+            <field name="name">Khoi Tao</field>
+            <field name="legend_blocked">Not validated</field>
+            <field name="legend_priority">Use the priority for tasks related to gold customers</field>
+            <field name="mail_template_id" ref="thmdocument.mail_template_data_thmdocument_task"/>
         </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_1" model="thmdocument.task">
+        <record id="thmdocument_stage_1" model="thmdocument.task.type">
             <field name="sequence">2</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Try to play with the search bar. Use the filters</field>
-            <field name="description">Come back to the tasks view to play with the filters. They are up to the form</field>
-            <field name="stage_id" ref="thmdocument_stage_data_0"/>
+            <field name="name">Lanh Dao Don Vi</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
         </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_5" model="thmdocument.task">
+        <record id="thmdocument_stage_2" model="thmdocument.task.type">
             <field name="sequence">3</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Try to drag a task wherever your want</field>
-            <field name="kanban_state">done</field>
-            <field name="stage_id" ref="thmdocument_stage_data_0"/>
+            <field name="name">Van Thu</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
         </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_2" model="thmdocument.task">
+        <record id="thmdocument_stage_3" model="thmdocument.task.type">
             <field name="sequence">4</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Guess what happens if you set this task as favorite?</field>
-            <field name="description">Click on the top left star to change the priority and come back in the tasks view. You task is now at the top of the column.</field>
-            <field name="stage_id" ref="thmdocument_stage_data_0"/>
+            <field name="name">Thu Ki Chuyen Mon</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
         </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_4" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Use the chatter to collaborate with your members</field>
-            <field name="description">The chatter is right below</field>
-            <field name="stage_id" ref="thmdocument_stage_data_2"/>
-        </record>
-
-        <record forcecreate="False" id="msg_task_4" model="mail.message">
-            <field name="subject">Converse with your customers and colleagues</field>
-            <field name="model">thmdocument.task</field>
-            <field name="author_id" ref="base.partner_root"/>
-            <field name="res_id" ref="thmdocument_task_data_4"/>
-            <field name="body">Use this chatter to send emails. Add new people in the followers list, to make them aware about the main changes about this task!</field>
-            <field name="message_type">email</field>
-            <field name="subtype_id" ref="mail.mt_comment"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_tag_data" model="thmdocument.tags">
-            <field name="name">NeedAssistance</field>
-            <field name="color" eval="5"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_6" model="thmdocument.task">
-            <field name="sequence">3</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Use tags to organize your tasks</field>
-            <field name="kanban_state">blocked</field>
-            <field name="stage_id" ref="thmdocument_stage_data_1"/>
-            <field name="description">Tags will be represented by colored bars on the card</field>
-            <field name="tag_ids" eval="[(6,0,[ref('thmdocument.thmdocument_tag_data')])]"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_12" model="thmdocument.task">
-            <field name="sequence">4</field>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="color">3</field>
-            <field name="name">Try to customize this card. Change its background.</field>
-            <field name="description">Use the edit icon on the card to customize the background.</field>
-            <field name="stage_id" ref="thmdocument_stage_data_1"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_13" model="thmdocument.task">
+        <record id="thmdocument_stage_4" model="thmdocument.task.type">
             <field name="sequence">5</field>
+            <field name="name">CT - TGD</field>
+            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_done">Buzz or set as done</field>
+        </record>
+        <record id="thmdocument_stage_5" model="thmdocument.task.type">
+            <field name="sequence">6</field>
+            <field name="name">Done</field>
+            <field name="fold" eval="True"/>
+        </record>
+        <record id="thmdocument_stage_6" model="thmdocument.task.type">
+            <field name="sequence">7</field>
+            <field name="name">Cancelled</field>
+            <field name="legend_done">Ready to reopen</field>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="thmdocument_thmdocument_1" model="thmdocument.thmdocument">
+            <field name="date_start" eval="time.strftime('%Y-%m-01 10:00:00')"/>
+            <field name="name">To trinh noi bo</field>
+            <field name="color">3</field>
             <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Set this task as 'Ready for next stage' to proceed further in the process</field>
-            <field name="description">You can change its state by clicking on the small circle on the card, or here, next to the task title.</field>
-            <field name="stage_id" ref="thmdocument_stage_data_1"/>
+            <field name="alias_model">thmdocument.task</field>
+            <field name="type_ids" eval="[(4, ref('thmdocument_stage_0')), (4, ref('thmdocument_stage_1')), (4, ref('thmdocument_stage_2')), (4, ref('thmdocument_stage_3')), (4, ref('thmdocument_stage_4')), (4, ref('thmdocument_stage_5')), (4, ref('thmdocument_stage_6'))]"/>
         </record>
 
-        <record forcecreate="False" id="thmdocument_task_data_8" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Do you want to learn more? Try our implementation guide!</field>
-            <field name="stage_id" ref="thmdocument_stage_data_2"/>
-            <field name="description">Click on the bar in the upper right corner</field>
-        </record>
-
-        <record forcecreate="False" id="msg_task_data_8_attach" model="ir.attachment">
-            <field name="name">planner_icon.png</field>
-            <field name="datas_fname">planner_icon.png</field>
-            <field name="datas" type="base64" file="thmdocument/static/src/img/planner_icon.png"></field>
-            <field name="res_model">thmdocument.task</field>
-            <field name="res_id" ref="thmdocument_task_data_8"/>
-        </record>
-        
-        <record forcecreate="False" id="msg_task_data_8" model="mail.message">
-            <field name="subject">How to open the implementation guide ?</field>
-            <field name="model">thmdocument.task</field>
-            <field name="res_id" ref="thmdocument_task_data_8"/>
-            <field name="author_id" ref="base.partner_root"/>
-            <field name="body"><![CDATA[Click on this icon in the upper right corner to open the planner<br/>
-            Best regards,<br/>Me.</p>]]></field>
-            <field name="message_type">comment</field>
-            <field name="attachment_ids" eval="[(6, 0, [ref('msg_task_data_8_attach')])]"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_8" model="thmdocument.task">
-            <field name="displayed_image_id" ref="msg_task_data_8_attach"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_7" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Finished with this stage? Archive it !</field>
-            <field name="stage_id" ref="thmdocument_stage_data_2"/>
-            <field name="description">Click on the gear icon on the column, to archive the stage, with all the tasks in it. You can also archive one card only, by clicking on the button in the task form view.</field>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_9" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">You want to add a stage? Add a new column !</field>
-            <field name="stage_id" ref="thmdocument_stage_data_2"/>
-            <field name="description">Click on the last column to create a stage. The name depends on the process. For example, in a customer service process, a stage name may be 'Backlog', 'Waiting Customer Feedback' or 'Done'.</field>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_11" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">You can set a deadline on a task</field>
-            <field name="stage_id" ref="thmdocument_stage_data_1"/>
-            <field name="date_deadline" eval="datetime.now()+timedelta(days=30)"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_14" model="thmdocument.task">
-            <field name="user_id" ref="base.user_root"/>
-            <field name="priority">0</field>
-            <field name="thmdocument_id" ref="thmdocument.thmdocument_thmdocument_data"/>
-            <field name="active" eval="False"/>
-            <field name="name">Send a message with a picture as attachment, and see what happens!</field>
-            <field name="stage_id" ref="thmdocument_stage_data_2"/>
-            <field name="description">In the chatter, sending an email with an attachment will display the picture on the card. When there are several image attachments, you can choose which one you want to display.</field>
-        </record>
-
-        <record forcecreate="False" id="msg_task_data_14_attach" model="ir.attachment">
-            <field name="name">bird.jpg</field>
-            <field name="datas_fname">bird.jpg</field>
-            <field name="datas" type="base64" file="thmdocument/static/src/img/bird.jpg"></field>
-            <field name="res_model">thmdocument.task</field>
-            <field name="res_id" ref="thmdocument_task_data_14"/>
-        </record>
-
-
-        <record forcecreate="False" id="msg_task_data_14" model="mail.message">
-            <field name="subject">How to open the planner?</field>
-            <field name="model">thmdocument.task</field>
-            <field name="res_id" ref="thmdocument_task_data_14"/>
-            <field name="author_id" ref="base.partner_root"/>
-            <field name="body"><![CDATA[Look at this beautiful bird !]]></field>
-            <field name="message_type">comment</field>
-            <field name="attachment_ids" eval="[(6, 0, [ref('msg_task_data_14_attach')])]"/>
-        </record>
-
-        <record forcecreate="False" id="thmdocument_task_data_14" model="thmdocument.task">
-            <field name="displayed_image_id" ref="msg_task_data_14_attach"/>
-        </record>
+        <!-- Channel -->
+        <!--<record id="mail_channel_thmdocument_task" model="mail.channel">-->
+            <!--<field name="name">Thmdocuments &amp; Tasks</field>-->
+            <!--<field name="group_public_id" ref="group_thmdocument_user"/>-->
+            <!--<field name="group_ids" eval="[(4, ref('group_thmdocument_user'))]"/>-->
+        <!--</record>-->
 
     </data>
 

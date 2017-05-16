@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="act_thmdocument_thmdocument_2_thmdocument_file_all">
+            <field name="name">Ho So</field>
+            <field name="res_model">thmdocument.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first record
+                </p>
+            </field>
+        </record>
+
+    <!-- THMdocument File -->
+    <record id="view_thmdocument_file_form" model="ir.ui.view">
+        <field name="name">thmdocument.file.form</field>
+        <field name="model">thmdocument.file</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <form string="file" class="o_form_thmdocument_file">
+
+                <sheet string="File">
+
+                <div class="oe_title">
+                    <h1 class="o_row">
+                        <field name="name" placeholder="Tieu De Ho So..."/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="code"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_deadline"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page name="description_page" string="Description">
+                        <field name="description" type="html"/>
+                        <div class="oe_clear"/>
+                    </page>
+                    <page string="Document">
+                            <field name="thmdocument_task_ids">
+                                <tree string="Document lines" >
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="date_deadline"/>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+	<!-- tree (list) view-->
+       <record id="view_thmdocument_file_tree" model="ir.ui.view">
+            <field name="name">thmdocument.file.tree</field>
+            <field name="model">thmdocument.file</field>
+            <field name="arch" type="xml">
+                <tree string="Field records">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date_start"/>
+                    <field name="date_deadline"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+       <menuitem name="Ho So" id="menu_thmdocument_file" sequence="70"  action="act_thmdocument_thmdocument_2_thmdocument_file_all"  web_icon="survey,static/description/icon.png"/>
+
+
+    </data>
+</odoo>

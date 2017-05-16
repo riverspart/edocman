@@ -365,12 +365,14 @@ class Task(models.Model):
                               index=True, track_visibility='always' , readonly=True)
     linh_vuc_id = fields.Many2one('thmdocument.field',
                                  string='Linh Vuc',
-                                 default=lambda self: self.env.uid,
-                                 index=True, track_visibility='always')
+                                 default=lambda self: self.env.uid, track_visibility='always')
     thmdocument_related_ids = fields.Many2many('thmdocument.task','thmdocument_task_rel', 'thmdocument_task_id', 'thmdocument_task_related_id', string='Van ban lien quan')
 
     tra_lai_ban_goc = fields.Boolean(default=False,
                             help="Tra lai ban goc.")
+
+    files_ids = fields.Many2many('thmdocument.file', 'thmdocument_file_task_rel', 'thmdocument_task_id', 'file_id',
+                                string='Ho So')
     # tungnt end
 
     date_last_stage_update = fields.Datetime(string='Last Stage Update',
