@@ -354,11 +354,11 @@ class Task(models.Model):
     date_assign = fields.Datetime(string='Assigning Date', index=True, copy=False, readonly=True)
     date_deadline = fields.Date(string='Deadline', index=True, copy=False)
     # tungnt start
-    ho_so_kem_theo = fields.Html(string='Ho so kem theo')
-    de_xuat = fields.Html(string='De xuat')
-    opinion = fields.Html(string='Opinion')
     trich_yeu = fields.Html(string='Trich yeu')
+    y_kien = fields.Html(string='Y kien')
+    de_xuat = fields.Html(string='De xuat')
     code = fields.Char(string='Code', required=True, index=True, default='/TTr-CNTT')
+    code_office = fields.Char(string='Code Office', required=True, index=True, default='/TTr-VP')
     create_uid = fields.Many2one('res.users',
                               string='Nguoi tao',
                               default=lambda self: self.env.uid,
@@ -366,6 +366,9 @@ class Task(models.Model):
     linh_vuc_id = fields.Many2one('thmdocument.field',
                                  string='Linh Vuc',
                                  default=lambda self: self.env.uid, track_visibility='always')
+    phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='CNTT')
+    don_vi_soan_thao = fields.Char(string='Don vi soan thao', required=True, index=True, default='CNTT')
+
     thmdocument_related_ids = fields.Many2many('thmdocument.task','thmdocument_task_rel', 'thmdocument_task_id', 'thmdocument_task_related_id', string='Van ban lien quan')
 
     tra_lai_ban_goc = fields.Boolean(default=False,

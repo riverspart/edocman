@@ -366,35 +366,36 @@ action = model.activate_sample_thmdocument()
                             <field name="user_id"
                                 class="o_task_user_field"
                                 options='{"no_open": True}'/>
+                            <field name="date_assign" groups="base.group_no_one"/>
+                            <field name="date_deadline"/>
+
                             <field name="legend_blocked" invisible="1"/>
                             <field name="legend_normal" invisible="1"/>
                             <field name="legend_done" invisible="1"/>
                         </group>
                         <group>
-                            <field name="date_deadline"/>
                             <field name="code"/>
+                            <field name="code_office"/>
                             <field name="linh_vuc_id"/>
+                            <field name="phong_soan_thao"/>
+                            <field name="don_vi_soan_thao"/>
                         </group>
                     </group>
                     <notebook>
-                        <page name="ho_so_kem_theo_page" string="Ho So Kem Theo">
-                            <field name="ho_so_kem_theo" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
                         <page name="trich_yeu_page" string="Trich Yeu">
                             <field name="trich_yeu" type="html"/>
                             <div class="oe_clear"/>
                         </page>
-                        <page name="de_xuat_page" string="De xuat">
-                            <field name="de_xuat" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                        <page name="opinion_page" string="Opinion">
-                            <field name="opinion" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
                         <page name="description_page" string="Description">
                             <field name="description" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="y_kien_page" string="Y Kien">
+                            <field name="y_kien" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="de_xuat_page" string="De xuat">
+                            <field name="de_xuat" type="html"/>
                             <div class="oe_clear"/>
                         </page>
                         <page string="Extra Info">
@@ -404,7 +405,6 @@ action = model.activate_sample_thmdocument()
                                     <field name="partner_id"/>
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                     <field name="displayed_image_id" groups="base.group_no_one"/>
-                                    <field name="date_assign" groups="base.group_no_one"/>
                                     <field name="date_last_stage_update" groups="base.group_no_one"/>
                                     <field name="tag_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
                                 </group>
