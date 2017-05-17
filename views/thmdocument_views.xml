@@ -357,7 +357,7 @@ action = model.activate_sample_thmdocument()
                     <div class="oe_title">
                         <h1 class="o_row">
                             <field name="priority" widget="priority"/>
-                            <field name="name" placeholder="Task Title..."/>
+                            <field name="name" placeholder="Tiêu đề tờ trình..."/>
                         </h1>
                     </div>
                     <group>
@@ -386,18 +386,6 @@ action = model.activate_sample_thmdocument()
                             <field name="trich_yeu" type="html"/>
                             <div class="oe_clear"/>
                         </page>
-                        <page name="description_page" string="Description">
-                            <field name="description" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                        <page name="y_kien_page" string="Y Kien">
-                            <field name="y_kien" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                        <page name="de_xuat_page" string="De xuat">
-                            <field name="de_xuat" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
                         <page string="Extra Info">
                             <group>
                                 <group>
@@ -416,6 +404,24 @@ action = model.activate_sample_thmdocument()
                                     <field name="files_ids" widget="many2many_tags"/>
                                 </group>
                             </group>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page name="description_page" string="Description">
+                            <field name="description" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page name="y_kien_page" string="Y Kien">
+                            <field name="y_kien" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page name="de_xuat_page" string="De xuat">
+                            <field name="de_xuat" type="html"/>
+                            <div class="oe_clear"/>
                         </page>
                     </notebook>
                     </sheet>
