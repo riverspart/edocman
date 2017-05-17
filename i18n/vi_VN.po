@@ -256,7 +256,7 @@ msgstr "# Working Days"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_nbr
 msgid "# of Tasks"
-msgstr "Số Nhiệm vụ"
+msgstr "Số Tờ trình"
 
 #. module: thmdocument
 #: code:addons/thmdocument/models/thmdocument.py:238
@@ -1048,7 +1048,7 @@ msgstr "Tháng Phân công"
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.act_res_users_2_thmdocument_task_opened
 msgid "Assigned Tasks"
-msgstr "Nhiệm vụ đã được Phân công"
+msgstr "Tờ trình đã được Phân công"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_user_id
@@ -1314,7 +1314,7 @@ msgstr "Configuration options are available in the Settings app."
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.action_config_settings
 msgid "Configure Thmdocument"
-msgstr "Cấu hình Dự án"
+msgstr "Cấu hình Văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -1378,7 +1378,7 @@ msgstr "Create a Thmdocument"
 #. module: thmdocument
 #: model:ir.actions.act_window,help:thmdocument.open_view_thmdocument_all_config
 msgid "Create a new thmdocument."
-msgstr "Tạo dự án mới"
+msgstr "Tạo văn bản mới"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -1527,7 +1527,7 @@ msgstr "Màn hình điều khiển"
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_de_xuat
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "De xuat"
-msgstr "De xuat"
+msgstr "Đề xuất"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_date_deadline
@@ -1728,7 +1728,7 @@ msgstr "Ngày kết thúc"
 #: code:addons/thmdocument/models/thmdocument.py:435
 #, python-format
 msgid "Error ! Task starting date must be lower than its ending date."
-msgstr "Error ! Task starting date must be lower than its ending date."
+msgstr "Lỗi! Ngày bắt đầu của tờ trình phải nhở hơn ngày kết thúc"
 
 #. module: thmdocument
 #: sql_constraint:thmdocument.thmdocument:0
@@ -1738,7 +1738,7 @@ msgstr "Error! thmdocument start-date must be lower than thmdocument end-date."
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_planned_hours
 msgid "Estimated time to do the task, usually set by the thmdocument manager when the task is in draft state."
-msgstr "Thời gian dự kiến để đóng nhiệm vụ này, thường được thiết lập bởi chủ nhiệm dự án khi một nhiệm vụ đang trong trạng thái dự thảo."
+msgstr "Thời gian dự kiến để đóng tờ trình này, thường được thiết lập bởi chủ nhiệm văn bản khi một tờ trình đang trong trạng thái dự thảo."
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -1769,7 +1769,7 @@ msgstr "Expert advice has been requested"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_date
 msgid "Expiration Date"
-msgstr "Expiration Date"
+msgstr "Ngày hết hạn"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_type_legend_priority
@@ -1833,12 +1833,12 @@ msgstr "Folded in Kanban"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.edit_thmdocument
 msgid "Follow this thmdocument to automatically track the events associated to tasks and issues of this thmdocument."
-msgstr "Theo dõi dự án này để tự động theo dõi các sự kiện liên quan đến nhiệm vụ và các vấn đề phát sinh của dự án."
+msgstr "Theo dõi văn bản này để tự động theo dõi các sự kiện liên quan đến tờ trình và các vấn đề phát sinh của văn bản."
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
 msgid "Followed by Me"
-msgstr "Followed by Me"
+msgstr "Theo dõi bởi tôi"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -1905,12 +1905,12 @@ msgstr "Gives label to tasks on thmdocument's kanban view."
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_sequence
 msgid "Gives the sequence order when displaying a list of Thmdocuments."
-msgstr "Chỉ ra thứ tự sắp xếp khi hiển thị danh sách dự án."
+msgstr "Chỉ ra thứ tự sắp xếp khi hiển thị danh sách văn bản."
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_sequence
 msgid "Gives the sequence order when displaying a list of tasks."
-msgstr "Chỉ ra thứ tự sắp xếp khi hiển thị danh sách nhiệm vụ."
+msgstr "Chỉ ra thứ tự sắp xếp khi hiển thị danh sách tờ trình."
 
 #. module: thmdocument
 #. openerp-web
@@ -1949,7 +1949,7 @@ msgstr "Here are some of the <strong>available customizations</strong>"
 #. module: thmdocument
 #: model:ir.actions.act_window,help:thmdocument.act_thmdocument_thmdocument_2_thmdocument_task_all
 msgid "Here, you can create new tasks"
-msgstr "Here, you can create new tasks"
+msgstr "Tại đây bạn có thể tạo tờ trình mới"
 
 #. module: thmdocument
 #: selection:report.thmdocument.task.user,priority:0
@@ -1960,12 +1960,12 @@ msgstr "Cao"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "Ho So Kem Theo"
-msgstr "Ho So Kem Theo"
+msgstr "Hồ Sơ Kem Theo"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_ho_so_kem_theo
 msgid "Ho so kem theo"
-msgstr "Ho so kem theo"
+msgstr "Hồ sơ kèm theo"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_privacy_visibility
@@ -1988,7 +1988,7 @@ msgstr "Holds visibility of the tasks or issues that belong to the current thmdo
 #: code:addons/thmdocument/models/thmdocument.py:584
 #, python-format
 msgid "I take it"
-msgstr "I take it"
+msgstr "Tôi nhận nó"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_id
@@ -2045,7 +2045,7 @@ msgstr "If set an email will be sent to the customer when the task or issue reac
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_active
 msgid "If the active field is set to False, it will allow you to hide the thmdocument without removing it."
-msgstr "Nếu không đánh dấu trường này, nó sẽ cho phép bạn ẩn dự án mà không xóa nó. without removing it."
+msgstr "Nếu không đánh dấu trường này, nó sẽ cho phép bạn ẩn văn bản mà không xóa nó. without removing it."
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2229,7 +2229,7 @@ msgstr "Know what my employees are working on"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 msgid "Last Message"
-msgstr "Last Message"
+msgstr "Tin nhắn cuối"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user___last_update
@@ -2270,19 +2270,19 @@ msgstr "Cập nhật lần cuối vào"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_field_lastModified
 msgid "Last updated"
-msgstr "Last updated"
+msgstr "Cập nhật lần cuối"
 
 #. module: thmdocument
 #: model:web.planner,tooltip_planner:thmdocument.planner_thmdocument
 msgid "Learn how to better organize your company using Thmdocuments, Tasks, Issues and Timesheets."
-msgstr "Learn how to better organize your company using Thmdocuments, Tasks, Issues and Timesheets."
+msgstr "Quản lý Văn bản, tờ trình, chấm công."
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/tour.js:18
 #, python-format
 msgid "Let's create your first thmdocument."
-msgstr "Let's create your first thmdocument."
+msgstr "Bắt đầu tạo tờ trình đầu tiên"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_config_settings_module_pad
@@ -2304,7 +2304,7 @@ msgstr "Linh vuc"
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_analytic_account_id
 msgid "Link this thmdocument to an analytic account if you need financial management on thmdocuments. It enables you to connect thmdocuments with budgets, planning, cost and revenue analysis, timesheets on thmdocuments, etc."
-msgstr "Liên kết dự án này tới một tài khoản quản trị nếu bạn cần quản lý tài chính trên dụ án. Nó cho phép bạn kết nối dự án với ngân sách, kế hoạch, chi phí vàvà phân tích lợi nhuận, thời gian làm việc trên dự án,..."
+msgstr "Liên kết văn bản này tới một tài khoản quản trị nếu bạn cần quản lý tài chính trên dụ án. Nó cho phép bạn kết nối văn bản với ngân sách, kế hoạch, chi phí vàvà phân tích lợi nhuận, thời gian làm việc trên văn bản,..."
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2326,7 +2326,7 @@ msgstr "Thấp"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
 msgid "Manager"
-msgstr "Quản trị dự án"
+msgstr "Quản trị văn bản"
 
 #. module: thmdocument
 #: model:res.groups,name:thmdocument.group_thmdocument_manager
@@ -2381,7 +2381,7 @@ msgstr "My Favorites"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 msgid "My Tasks"
-msgstr "Nhiệm vụ của tôi"
+msgstr "Tờ trình của tôi"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_field_name
@@ -2411,7 +2411,7 @@ msgstr "Mới"
 #: code:addons/thmdocument/models/thmdocument.py:588
 #, python-format
 msgid "New Task"
-msgstr "New Task"
+msgstr "Tờ trình mới"
 
 #. module: thmdocument
 #. openerp-web
@@ -2461,12 +2461,12 @@ msgstr "Now that the thmdocument is set up, <b>create a few tasks</b>."
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_report_thmdocument_task_user_opening_days
 msgid "Number of Days to Open the task"
-msgstr "Số ngày để mở nhiệm vụ"
+msgstr "Số ngày để mở tờ trình"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_report_thmdocument_task_user_closing_days
 msgid "Number of Days to close the task"
-msgstr "Số ngày để đóng nhiệm vụ"
+msgstr "Số ngày để đóng tờ trình"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_doc_count
@@ -2497,7 +2497,7 @@ msgstr "Odoo's thmdocument management allows you to manage the pipeline of your 
 #: selection:thmdocument.thmdocument,privacy_visibility:0
 #, python-format
 msgid "On invitation only"
-msgstr "On invitation only"
+msgstr "Chỉ cho lời mời"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2543,7 +2543,7 @@ msgstr "Organize your company, from personal tasks to collaborative meeting minu
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.action_view_task_overpassed_draft
 msgid "Overpassed Tasks"
-msgstr "Nhiệm vụ quá hạn"
+msgstr "Tờ trình quá hạn"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_legend_blocked
@@ -2612,7 +2612,7 @@ msgstr "Planner"
 #: code:addons/thmdocument/models/thmdocument.py:743
 #, python-format
 msgid "Please remove existing tasks in the thmdocument linked to the accounts you want to delete."
-msgstr "Please remove existing tasks in the thmdocument linked to the accounts you want to delete."
+msgstr "Hãy xóa bỏ văn bản hiện có được liên kết với các tài khoản bạn muốn xóa bỏ."
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_alias_contact
@@ -2661,7 +2661,7 @@ msgstr "Project Count"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_project_ids
 msgid "Projects"
-msgstr "Dự án"
+msgstr "Văn bản"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_config_settings_module_rating_thmdocument
@@ -2752,7 +2752,7 @@ msgstr "Số giờ còn lại"
 #: code:addons/thmdocument/static/src/js/thmdocument.js:48
 #, python-format
 msgid "Remove Cover Image"
-msgstr "Remove Cover Image"
+msgstr "Xóa bỏ hình nền"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2823,7 +2823,7 @@ msgstr "Search"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
 msgid "Search Thmdocument"
-msgstr "Tìm kiếm Dự án"
+msgstr "Tìm kiếm Văn bản"
 
 #. module: thmdocument
 #. openerp-web
@@ -3005,7 +3005,7 @@ msgstr "Tags of thmdocument's tasks, issues..."
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 #: model:ir.ui.view,arch_db:thmdocument.view_task_thmdocument_user_search
 msgid "Task"
-msgstr "Nhiệm vụ"
+msgstr "Tờ trình"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_tasks
@@ -3016,7 +3016,7 @@ msgstr "Task Activities"
 #: model:mail.message.subtype,name:thmdocument.mt_task_blocked
 #: model:mail.message.subtype,name:thmdocument.mt_thmdocument_task_blocked
 msgid "Task Blocked"
-msgstr "Nhiệm vụ bị Phong tỏa"
+msgstr "Tờ trình bị Phong tỏa"
 
 #. module: thmdocument
 #: model:mail.message.subtype,name:thmdocument.mt_task_new
@@ -3040,12 +3040,12 @@ msgstr "Task Ready"
 #: model:ir.ui.view,arch_db:thmdocument.task_type_edit
 #: model:ir.ui.view,arch_db:thmdocument.task_type_tree
 msgid "Task Stage"
-msgstr "Trạng thái của Nhiệm vụ"
+msgstr "Trạng thái của Tờ trình"
 
 #. module: thmdocument
 #: model:mail.message.subtype,name:thmdocument.mt_thmdocument_task_stage
 msgid "Task Stage Changed"
-msgstr "Trạng thái của Nhiệm vụ được thay đổi"
+msgstr "Trạng thái của Tờ trình được thay đổi"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_name
@@ -3061,7 +3061,7 @@ msgstr "Task Title..."
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_blocked
 msgid "Task blocked"
-msgstr "Nhiệm vụ bị phong tỏa"
+msgstr "Tờ trình bị phong tỏa"
 
 #. module: thmdocument
 #: selection:thmdocument.config.settings,module_pad:0
@@ -3114,7 +3114,7 @@ msgstr "Task ready for Next Stage"
 #: model:ir.ui.view,arch_db:thmdocument.view_task_tree2
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_kanban
 msgid "Tasks"
-msgstr "Nhiệm vụ"
+msgstr "Tờ trình"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3129,13 +3129,13 @@ msgstr "Tasks &amp; Issues"
 #: model:ir.ui.view,arch_db:thmdocument.view_task_thmdocument_user_pivot
 #: model:ir.ui.view,arch_db:thmdocument.view_task_thmdocument_user_search
 msgid "Tasks Analysis"
-msgstr "Phân tích nhiệm vụ"
+msgstr "Phân tích tờ trình"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_type_ids
 #: model:ir.ui.view,arch_db:thmdocument.task_type_search
 msgid "Tasks Stages"
-msgstr "trạng thái nhiệm vụ"
+msgstr "trạng thái tờ trình"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3224,7 +3224,7 @@ msgstr "This is particularly useful to manage help and support: all incoming ema
 #: model:ir.actions.act_window,help:thmdocument.action_thmdocument_task_user_tree
 #: model:ir.actions.act_window,help:thmdocument.action_thmdocument_task_user_tree_filtered
 msgid "This report allows you to analyse the performance of your thmdocuments and users. You can analyse the quantities of tasks, the hours spent compared to the planned hours, the average number of days to open or close a task, etc."
-msgstr "Báo cáo này cho phép bạn phân tích hiệu quả của dự án và người dùng Bạn có thể phân tích số lượng nhiệm vụ, số giờ đã sử dụng so với số giờ dự kiến, số ngày trung bình để mở hoặc đóng một nhiệm vụ,..."
+msgstr "Báo cáo này cho phép bạn phân tích hiệu quả của văn bản và người dùng Bạn có thể phân tích số lượng tờ trình, số giờ đã sử dụng so với số giờ dự kiến, số ngày trung bình để mở hoặc đóng một tờ trình,..."
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_type_fold
@@ -3264,24 +3264,24 @@ msgstr "This will set the unit of measure used in thmdocuments and tasks.\n"
 #: model:ir.ui.view,arch_db:thmdocument.view_task_thmdocument_user_search
 #: model:res.request.link,name:thmdocument.req_link_thmdocument
 msgid "Thmdocument"
-msgstr "Dự án"
+msgstr "Văn bản"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_config_settings_generate_thmdocument_alias
 msgid "Thmdocument Alias"
-msgstr "Thmdocument Alias"
+msgstr "Bí danh văn bản"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_account_analytic_account_thmdocument_count
 #: model:ir.model.fields,field_description:thmdocument.field_project_project_thmdocument_count
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_thmdocument_count
 msgid "Thmdocument Count"
-msgstr "Thmdocument Count"
+msgstr "Đếm văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_config_settings
 msgid "Thmdocument Management"
-msgstr "Quản trị dự án"
+msgstr "Quản trị văn bản"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_manager_id
@@ -3290,7 +3290,7 @@ msgstr "Quản trị dự án"
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
 msgid "Thmdocument Manager"
-msgstr "Chủ nhiệm Dự án"
+msgstr "Chủ nhiệm Văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.edit_thmdocument
@@ -3298,12 +3298,12 @@ msgstr "Chủ nhiệm Dự án"
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
 msgid "Thmdocument Name"
-msgstr "Tên dự án"
+msgstr "Tên văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
 msgid "Thmdocument Settings"
-msgstr "Thiết lập dự án"
+msgstr "Thiết lập văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3314,7 +3314,7 @@ msgstr "Thmdocument Settings."
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_task_graph
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_task_pivot
 msgid "Thmdocument Tasks"
-msgstr "Nhiệm vụ"
+msgstr "Tờ trình"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_res_company_thmdocument_time_mode_id
@@ -3330,12 +3330,12 @@ msgstr "Thmdocument Time Unit *"
 #. module: thmdocument
 #: model:res.request.link,name:thmdocument.req_link_task
 msgid "Thmdocument task"
-msgstr "Nhiệm vụ"
+msgstr "Tờ trình"
 
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.dblc_proj
 msgid "Thmdocument's tasks"
-msgstr "Nhiệm vụ của dự án"
+msgstr "Tờ trình của văn bản"
 
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.open_view_thmdocument_all
@@ -3345,7 +3345,7 @@ msgstr "Nhiệm vụ của dự án"
 #: model:ir.ui.view,arch_db:thmdocument.analytic_account_inherited_form
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument
 msgid "Thmdocuments"
-msgstr "Dự án"
+msgstr "Văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.edit_thmdocument
@@ -3401,7 +3401,7 @@ msgstr "To use Timesheets, go to your"
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_task_remaining_hours
 msgid "Total remaining time, can be re-estimated periodically by the assignee of the task."
-msgstr "Tổng thời gian còn lại, có thể được dự kiến lại một cách định kỳ bởi người được phân công nhiệm vụ."
+msgstr "Tổng thời gian còn lại, có thể được dự kiến lại một cách định kỳ bởi người được phân công tờ trình."
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_tra_lai_ban_goc
@@ -3421,12 +3421,12 @@ msgstr "Track customer satisfaction on tasks"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "Trich Yeu"
-msgstr "Trich Yeu"
+msgstr "Trích yếu"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_trich_yeu
 msgid "Trich yeu"
-msgstr "Trich yeu"
+msgstr "Trích yếu"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
@@ -3532,14 +3532,14 @@ msgstr "View statistics for the week"
 #: selection:thmdocument.thmdocument,privacy_visibility:0
 #, python-format
 msgid "Visible by all employees"
-msgstr "Visible by all employees"
+msgstr "Nhìn thấy bởi tất cả mọi người"
 
 #. module: thmdocument
 #: code:addons/thmdocument/models/thmdocument.py:203
 #: selection:thmdocument.thmdocument,privacy_visibility:0
 #, python-format
 msgid "Visible by following customers"
-msgstr "Visible by following customers"
+msgstr "Nhìn thấy bởi các khách hàng đang theo dõi"
 
 #. module: thmdocument
 #. openerp-web
@@ -3690,7 +3690,7 @@ msgstr "You can save your reports to easily reuse it later"
 #: code:addons/thmdocument/models/thmdocument.py:69
 #, python-format
 msgid "You cannot delete a thmdocument containing tasks. You can either delete all the thmdocument's tasks and then delete the thmdocument or simply deactivate the thmdocument."
-msgstr "Bạn không thể xóa một dự án có chứa nhiệm vụ. Hoặc bạn có thể xóa tất cả các nhiệm vụ rồi xóa dự án. Hay đơn giản hơn, bạn có thể giải hoạt dự án này."
+msgstr "Bạn không thể xóa một văn bản có chứa tờ trình. Hoặc bạn có thể xóa tất cả các tờ trình rồi xóa văn bản. Hay đơn giản hơn, bạn có thể giải hoạt văn bản này."
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3761,7 +3761,7 @@ msgstr "send us an email"
 #: code:addons/thmdocument/models/thmdocument.py:483
 #, python-format
 msgid "tasks"
-msgstr "nhiệm vụ"
+msgstr "tờ trình"
 
 #. module: thmdocument
 #: model:ir.model,name:thmdocument.model_thmdocument_config_settings
