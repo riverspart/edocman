@@ -2873,7 +2873,7 @@ msgstr "Scrum Methodology"
 #. module: thmdocument
 #: model:ir.ui.menu,name:thmdocument.menu_thmdocument_management
 msgid "Search"
-msgstr "Search"
+msgstr "Tìm kiếm"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_thmdocument_filter
