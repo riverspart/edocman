@@ -215,7 +215,7 @@
 
         <record id="thmdocument_thmdocument_1" model="thmdocument.thmdocument">
             <field name="date_start" eval="time.strftime('%Y-%m-01 10:00:00')"/>
-            <field name="name">To trinh noi bo</field>
+            <field name="name">Tờ trình nội bộ</field>
             <field name="color">3</field>
             <field name="user_id" ref="base.user_root"/>
             <field name="alias_model">thmdocument.task</field>
