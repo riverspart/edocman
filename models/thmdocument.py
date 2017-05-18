@@ -6,7 +6,9 @@ from lxml import etree
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
-
+import logging
+import pprint
+_logger = logging.getLogger(__name__)
 
 class ThmdocumentTaskType(models.Model):
     _name = 'thmdocument.task.type'
@@ -417,6 +419,7 @@ class Task(models.Model):
         else:
             self.stage_id = False
 
+
     @api.onchange('user_id')
     def _onchange_user(self):
         if self.user_id:
@@ -515,9 +518,20 @@ class Task(models.Model):
     # ------------------------------------------------
     # CRUD overrides
     # ------------------------------------------------
+    def open_task_modal(self, context=None):
+        return {
+            'name': 'thmdocument.task.form',
+            'type': 'ir.ui.view',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': context,
+            'res_model': 'thmdocument.task',
+        }
 
     @api.model
     def create(self, vals):
+
         # context: no_log, because subtype already handle this
         context = dict(self.env.context, mail_create_nolog=True)
 
@@ -528,10 +542,19 @@ class Task(models.Model):
         if vals.get('user_id'):
             vals['date_assign'] = fields.Datetime.now()
         task = super(Task, self.with_context(context)).create(vals)
+
+        _logger.info('tungnt save result %s', pprint.pformat(task))
+
+        # self.open_task_modal(context)
+
         return task
+
+
+
 
     @api.multi
     def write(self, vals):
+
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:
@@ -545,6 +568,9 @@ class Task(models.Model):
 
         result = super(Task, self).write(vals)
 
+        _logger.info('tungnt edit result %s', pprint.pformat(vals))
+
+        self.open_task_modal( self.env.context)
         return result
 
     # ---------------------------------------------------
