@@ -48,7 +48,7 @@
         </record>
 
         <record id="act_thmdocument_thmdocument_2_thmdocument_task_all" model="ir.actions.act_window">
-            <field name="name">Tasks</field>
+            <field name="name">Tờ trình nội bộ</field>
             <field name="res_model">thmdocument.task</field>
             <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
             <field name="context">{
@@ -256,7 +256,7 @@
                                                 <a type="edit">Settings</a>
                                             </div>
                                             <div attrs="{'invisible': [('use_tasks', '=', False)]}">
-                                                <a name="%(thmdocument.action_thmdocument_task_user_tree_filtered)d" type="action">Tasks</a>
+                                                <a name="%(thmdocument.action_thmdocument_task_user_tree_filtered)d" type="action">Tờ trình</a>
                                             </div>
                                         </div>
                                         <div t-if="widget.editable" class="o_thmdocument_kanban_colorpicker">
@@ -428,7 +428,14 @@ action = model.activate_sample_thmdocument()
 
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+
+                        <iframe src="http://anvaka.github.io/graph-drawing-libraries/examples/almende_vis/01.basic/"
+                                frameborder="0" class="sourceView"
+                                noresize="noresize"
+                                style="height: 573px;"></iframe>
+
                         <field name="message_ids" widget="mail_thread"/>
+
                     </div>
                 </form>
             </field>
@@ -439,7 +446,7 @@ action = model.activate_sample_thmdocument()
             <field name="name">thmdocument.task.kanban</field>
             <field name="model">thmdocument.task</field>
             <field name="arch" type="xml">
-                <kanban quick_create="false" create="true" class="o_kanban_small_column o_kanban_thmdocument_tasks" on_create="quick_create">
+                <kanban quick_create="false" create="true" class="o_kanban_small_column o_kanban_thmdocument_tasks">
                     <field name="color"/>
                     <field name="priority"/>
                     <field name="stage_id" options='{"group_by_tooltip": {"description": "Stage Description", "legend_priority": "Use of stars"}}'/>
@@ -467,8 +474,8 @@ action = model.activate_sample_thmdocument()
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                     <t t-if="widget.editable"><li><a type="set_cover">Set Cover Image</a></li></t>
-                                    <t t-if="widget.editable"><li><a type="edit">Edit Task</a></li></t>
-                                    <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                    <t t-if="widget.editable"><li><a type="edit">Sửa tờ trình</a></li></t>
+                                    <t t-if="widget.deletable"><li><a type="delete">Xóa</a></li></t>
                                     <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
                                 </ul>
                             </div>
@@ -478,6 +485,10 @@ action = model.activate_sample_thmdocument()
                                 </div>
                                 <div>
                                     <strong><field name="name"/></strong>
+                                </div>
+                                <div>
+                                    <strong>Chuyển tới</strong>
+                                    <strong><field name="user_id"/></strong>
                                 </div>
                                 <div class="text-muted">
                                     <field name="thmdocument_id" invisible="context.get('default_thmdocument_id', False)"/>
@@ -575,7 +586,7 @@ action = model.activate_sample_thmdocument()
         </record>
 
         <record id="action_view_task" model="ir.actions.act_window">
-            <field name="name">Tasks</field>
+            <field name="name">Tờ trình nội bộ</field>
             <field name="res_model">thmdocument.task</field>
             <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
             <field name="context">{'search_default_my_tasks': 1}</field>
