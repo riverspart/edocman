@@ -425,6 +425,7 @@ action = model.activate_sample_thmdocument()
                         </page>
                     </notebook>
                     </sheet>
+
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -438,7 +439,7 @@ action = model.activate_sample_thmdocument()
             <field name="name">thmdocument.task.kanban</field>
             <field name="model">thmdocument.task</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_small_column o_kanban_thmdocument_tasks" on_create="quick_create">
+                <kanban quick_create="false" create="true" class="o_kanban_small_column o_kanban_thmdocument_tasks" on_create="quick_create">
                     <field name="color"/>
                     <field name="priority"/>
                     <field name="stage_id" options='{"group_by_tooltip": {"description": "Stage Description", "legend_priority": "Use of stars"}}'/>
