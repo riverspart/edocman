@@ -139,15 +139,15 @@
         </record>
 
         <record forcecreate="False" id="thmdocument_field_data_0" model="thmdocument.field">
-            <field name="name">Cong van doan</field>
+            <field name="name">Công văn đoàn</field>
         </record>
 
         <record forcecreate="False" id="thmdocument_field_data_1" model="thmdocument.field">
-            <field name="name">Cong van dang</field>
+            <field name="name">Công văn đảng</field>
         </record>
 
         <record forcecreate="False" id="thmdocument_field_data_2" model="thmdocument.field">
-            <field name="name">San xuat kinh doanh</field>
+            <field name="name">Sản xuất kinh doanh</field>
         </record>
 
         <!-- Users -->
