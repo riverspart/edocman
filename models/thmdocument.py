@@ -561,6 +561,15 @@ class Task(models.Model):
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:
+			if(vals.get('stage_id') == 5 ):
+                vals.update({'user_id' : 5})
+            elif(vals.get('stage_id') == 6 ):
+                vals.update({'user_id' : 5})
+            elif(vals.get('stage_id') == 7 ):
+                vals.update({'user_id' : 5})
+            elif(vals.get('stage_id') == 8 ):
+                vals.update({'user_id' : 5})
+		
             vals['date_last_stage_update'] = now
             # reset kanban state when changing stage
             if 'kanban_state' not in vals:
