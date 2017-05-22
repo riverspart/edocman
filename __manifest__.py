@@ -17,6 +17,7 @@
         'web_kanban',
         'web_planner',
         'web_tour',
+        'hr',
     ],
     'description': """
 Track multi-level thmdocuments, tasks, work done on tasks

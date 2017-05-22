@@ -367,6 +367,7 @@ action = model.activate_sample_thmdocument()
                                 class="o_task_user_field"
                                 options='{"no_open": True}'/>
                             <field name="date_assign" groups="base.group_no_one"/>
+                            <field name="date_nhan_du_ban_cung"/>
                             <field name="date_deadline"/>
 
                             <field name="legend_blocked" invisible="1"/>
@@ -382,8 +383,61 @@ action = model.activate_sample_thmdocument()
                         </group>
                     </group>
                     <notebook>
-                        <page name="trich_yeu_page" string="Trich Yeu">
+                        <page name="trich_yeu_page" string="Trich yeu to trinh">
                             <field name="trich_yeu" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="description_page" string="Description">
+                            <field name="description" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="y_kien_page" string="Y kien lanh dao">
+                            <field name="y_kien" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="de_xuat_page" string="De xuat thu ky">
+                            <field name="de_xuat" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="lanhdao_approve_page" string="Lanh dao phe duyet">
+                            <field name="lanhdao_approve" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="change_history_page" string="Lich su chuyen">
+                            <field name="message_ids" widget="mail_thread"/>
+
+                            <!--<tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">-->
+                            <!--<field name="workflows_network"/>-->
+                            <!--</tree>-->
+                            <div id="mynetwork"></div>
+                            <script>
+                            // create an array with nodes
+                              var nodes = [
+                                {id: 1, label: 'Node 1'},
+                                {id: 2, label: 'Node 2'},
+                                {id: 3, label: 'Node 3'},
+                                {id: 4, label: 'Node 4'},
+                                {id: 5, label: 'Node 5'}
+                              ];
+
+                              // create an array with edges
+                              var edges = [
+                                {from: 1, to: 2, label: 'Node 4'},
+                                {from: 1, to: 3},
+                                {from: 2, to: 4},
+                                {from: 2, to: 5}
+                              ];
+
+                              // create a network
+                              var container = document.getElementById('mynetwork');
+                              var data = {
+                                nodes: nodes,
+                                edges: edges
+                              };
+                              var options = {};
+                              var network = new vis.Network(container, data, options);
+                            </script>
+
                             <div class="oe_clear"/>
                         </page>
                         <page string="Extra Info">
@@ -407,59 +461,11 @@ action = model.activate_sample_thmdocument()
                             </group>
                         </page>
                     </notebook>
-                    <notebook>
-                        <page name="description_page" string="Description">
-                            <field name="description" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                    </notebook>
-                    <notebook>
-                        <page name="y_kien_page" string="Y Kien">
-                            <field name="y_kien" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                    </notebook>
-                    <notebook>
-                        <page name="de_xuat_page" string="De xuat">
-                            <field name="de_xuat" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                    </notebook>
                     </sheet>
 
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
 
-                        <div id="mynetwork"></div>
-                        <script>
-                        // create an array with nodes
-                          var nodes = [
-                            {id: 1, label: 'Node 1'},
-                            {id: 2, label: 'Node 2'},
-                            {id: 3, label: 'Node 3'},
-                            {id: 4, label: 'Node 4'},
-                            {id: 5, label: 'Node 5'}
-                          ];
-
-                          // create an array with edges
-                          var edges = [
-                            {from: 1, to: 2, label: 'Node 4'},
-                            {from: 1, to: 3},
-                            {from: 2, to: 4},
-                            {from: 2, to: 5}
-                          ];
-
-                          // create a network
-                          var container = document.getElementById('mynetwork');
-                          var data = {
-                            nodes: nodes,
-                            edges: edges
-                          };
-                          var options = {};
-                          var network = new vis.Network(container, data, options);
-                        </script>
-
-                        <field name="message_ids" widget="mail_thread"/>
 
                     </div>
                 </form>

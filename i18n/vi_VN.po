@@ -1539,8 +1539,8 @@ msgstr "Màn hình điều khiển"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_de_xuat
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "De xuat"
-msgstr "Đề xuất"
+msgid "De xuat thu ky"
+msgstr "Đề xuất thư ký"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_date_deadline
@@ -1599,7 +1599,7 @@ msgstr "Deployment"
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_file_form
 msgid "Description"
-msgstr "Mô tả"
+msgstr "Mô tả tờ trình"
 
 #. module: thmdocument
 #. openerp-web
@@ -2278,6 +2278,16 @@ msgid "Lanh Dao Don Vi"
 msgstr "Lãnh Đạo Đơn Vị"
 
 #. module: thmdocument
+#: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_lanhdao_approve
+msgid "Lanh dao approve"
+msgstr "Lãnh đạo phê duyệt"
+
+#. module: thmdocument
+#: model:ir.ui.view,arch_db:thmdocument.view_task_form2
+msgid "Lanh dao phe duyet"
+msgstr "Lãnh đạo phê duyệt"
+
+#. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 msgid "Last Message"
 msgstr "Tin nhắn cuối"
@@ -2344,6 +2354,11 @@ msgid "Lets the company customize which Pad installation should be used to link 
 "-This installs the module pad."
 msgstr "Lets the company customize which Pad installation should be used to link to new pads (for example: http://ietherpad.com/).\n"
 "-This installs the module pad."
+
+#. module: thmdocument
+#: model:ir.ui.view,arch_db:thmdocument.view_task_form2
+msgid "Lich su chuyen"
+msgstr "Lịch sử chuyển"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_linh_vuc_id
@@ -2474,6 +2489,11 @@ msgstr "Tờ trình nội bộ mới"
 #, python-format
 msgid "New repair added"
 msgstr "New repair added"
+
+#. module: thmdocument
+#: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_date_nhan_du_ban_cung
+msgid "Ngay nhan du ban cung"
+msgstr "Ngày nhận đủ bản cứng"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_file_create_uid
@@ -3490,12 +3510,8 @@ msgstr "Track customer satisfaction on tasks"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "Trich Yeu"
-msgstr "Trích yếu"
-
-#. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_trich_yeu
-msgid "Trich yeu"
+msgid "Trich yeu to trinh"
 msgstr "Trích yếu"
 
 #. module: thmdocument
@@ -3728,13 +3744,9 @@ msgstr "Write date"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "Y Kien"
-msgstr "Ý Kiến"
-
-#. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_y_kien
-msgid "Y kien"
-msgstr "Ý kiến"
+msgid "Y kien lanh dao"
+msgstr "Ý kiến lãnh đạo"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.task_type_edit
