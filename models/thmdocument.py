@@ -561,12 +561,13 @@ class Task(models.Model):
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:
-			if(vals.get('stage_id') == 5 ):
-                vals.update({'user_id' : 5})
-            elif(vals.get('stage_id') == 6 ):
-                vals.update({'user_id' : 5})
-            elif(vals.get('stage_id') == 7 ):
-                vals.update({'user_id' : 5})
+			employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
+            if(vals.get('stage_id') == 5 ):
+                vals.update({'user_id' : employee[0].department_id.manager_id.user_id.id})
+            # elif(vals.get('stage_id') == 6 ):
+            #     vals.update({'user_id' : 5})
+            # elif(vals.get('stage_id') == 7 ):
+            #     vals.update({'user_id' : 5})
             elif(vals.get('stage_id') == 8 ):
                 vals.update({'user_id' : 5})
 		
