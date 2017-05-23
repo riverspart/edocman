@@ -521,7 +521,9 @@ class Task(models.Model):
     # ------------------------------------------------
     # CRUD overrides
     # ------------------------------------------------
-
+    @api.model
+    def my_function(self):
+        print 'fooooooooooooooo'
     @api.model
     def create(self, vals):
 
