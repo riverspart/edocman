@@ -368,6 +368,7 @@ action = model.activate_sample_thmdocument()
                                 options='{"no_open": True}'/>
                             <field name="date_assign" groups="base.group_no_one"/>
                             <field name="date_deadline"/>
+                            <field name="date_nhan_du_ban_cung"/>
 
                             <field name="legend_blocked" invisible="1"/>
                             <field name="legend_normal" invisible="1"/>
@@ -382,8 +383,61 @@ action = model.activate_sample_thmdocument()
                         </group>
                     </group>
                     <notebook>
-                        <page name="trich_yeu_page" string="Trich Yeu">
+                        <page name="trich_yeu_page" string="Trich yeu to trinh">
                             <field name="trich_yeu" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="description_page" string="Description">
+                            <field name="description" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="y_kien_page" string="Y kien lanh dao">
+                            <field name="y_kien" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="de_xuat_page" string="De xuat thu ky">
+                            <field name="de_xuat" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="chutich_approve_page" string="Chu tich phe duyet">
+                            <field name="chutich_approve" type="html"/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page name="change_history_page" string="Lich su chuyen">
+                            <field name="message_ids" widget="mail_thread"/>
+
+                            <!--<tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">-->
+                            <!--<field name="workflows_network"/>-->
+                            <!--</tree>-->
+                            <div id="mynetwork"></div>
+                            <script>
+                            // create an array with nodes
+                              var nodes = [
+                                {id: 1, label: 'Node 1'},
+                                {id: 2, label: 'Node 2'},
+                                {id: 3, label: 'Node 3'},
+                                {id: 4, label: 'Node 4'},
+                                {id: 5, label: 'Node 5'}
+                              ];
+
+                              // create an array with edges
+                              var edges = [
+                                {from: 1, to: 2, label: 'Node 4'},
+                                {from: 1, to: 3},
+                                {from: 2, to: 4},
+                                {from: 2, to: 5}
+                              ];
+
+                              // create a network
+                              var container = document.getElementById('mynetwork');
+                              var data = {
+                                nodes: nodes,
+                                edges: edges
+                              };
+                              var options = {};
+                              var network = new vis.Network(container, data, options);
+                            </script>
+
                             <div class="oe_clear"/>
                         </page>
                         <page string="Extra Info">
@@ -400,28 +454,11 @@ action = model.activate_sample_thmdocument()
                                     <field name="create_date"/>
                                     <field name="create_uid"/>
                                     <field name="tra_lai_ban_goc"/>
+                                    <field name="ho_so_kem_theo"/>
                                     <field name="thmdocument_related_ids" widget="many2many_tags"/>
                                     <field name="files_ids" widget="many2many_tags"/>
                                 </group>
                             </group>
-                        </page>
-                    </notebook>
-                    <notebook>
-                        <page name="description_page" string="Description">
-                            <field name="description" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                    </notebook>
-                    <notebook>
-                        <page name="y_kien_page" string="Y Kien">
-                            <field name="y_kien" type="html"/>
-                            <div class="oe_clear"/>
-                        </page>
-                    </notebook>
-                    <notebook>
-                        <page name="de_xuat_page" string="De xuat">
-                            <field name="de_xuat" type="html"/>
-                            <div class="oe_clear"/>
                         </page>
                     </notebook>
                     </sheet>
@@ -429,12 +466,6 @@ action = model.activate_sample_thmdocument()
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
 
-                        <iframe src="http://anvaka.github.io/graph-drawing-libraries/examples/almende_vis/01.basic/"
-                                frameborder="0" class="sourceView"
-                                noresize="noresize"
-                                style="height: 573px;"></iframe>
-
-                        <field name="message_ids" widget="mail_thread"/>
 
                     </div>
                 </form>
@@ -473,7 +504,6 @@ action = model.activate_sample_thmdocument()
                                     <span class="fa fa-bars fa-lg"/>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                    <t t-if="widget.editable"><li><a type="set_cover">Set Cover Image</a></li></t>
                                     <t t-if="widget.editable"><li><a type="edit">Sửa tờ trình</a></li></t>
                                     <t t-if="widget.deletable"><li><a type="delete">Xóa</a></li></t>
                                     <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>

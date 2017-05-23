@@ -1539,8 +1539,8 @@ msgstr "Màn hình điều khiển"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_de_xuat
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "De xuat"
-msgstr "Đề xuất"
+msgid "De xuat thu ky"
+msgstr "Đề xuất thư ký CM"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_date_deadline
@@ -1599,7 +1599,7 @@ msgstr "Deployment"
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 #: model:ir.ui.view,arch_db:thmdocument.view_thmdocument_file_form
 msgid "Description"
-msgstr "Mô tả"
+msgstr "Mô tả tờ trình"
 
 #. module: thmdocument
 #. openerp-web
@@ -2278,6 +2278,12 @@ msgid "Lanh Dao Don Vi"
 msgstr "Lãnh Đạo Đơn Vị"
 
 #. module: thmdocument
+#: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_lanhdao_approve
+#: model:ir.ui.view,arch_db:thmdocument.view_task_form2
+msgid "Chu tich phe duyet"
+msgstr "Chủ tịch phê duyệt"
+
+#. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 msgid "Last Message"
 msgstr "Tin nhắn cuối"
@@ -2346,6 +2352,11 @@ msgstr "Lets the company customize which Pad installation should be used to link
 "-This installs the module pad."
 
 #. module: thmdocument
+#: model:ir.ui.view,arch_db:thmdocument.view_task_form2
+msgid "Lich su chuyen"
+msgstr "Lịch sử chuyển"
+
+#. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_linh_vuc_id
 msgid "Linh Vuc"
 msgstr "Lĩnh Vực"
@@ -2385,7 +2396,7 @@ msgstr "Quản trị văn bản"
 #. module: thmdocument
 #: model:res.groups,name:thmdocument.group_thmdocument_manager
 msgid "ManagerThmdocument"
-msgstr "ManagerThmdocument"
+msgstr "Người quản lý văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2474,6 +2485,11 @@ msgstr "Tờ trình nội bộ mới"
 #, python-format
 msgid "New repair added"
 msgstr "New repair added"
+
+#. module: thmdocument
+#: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_date_nhan_du_ban_cung
+msgid "Ngay nhan du ban cung"
+msgstr "Ngày nhận đủ bản cứng"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_file_create_uid
@@ -3111,12 +3127,12 @@ msgstr "Trạng thái của Tờ trình nội bộ được thay đổi"
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_name
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_name
 msgid "Task Title"
-msgstr "Task Title"
+msgstr "Tiêu đề tờ trình"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "Task Title..."
-msgstr "Task Title..."
+msgstr "Tiêu đề tờ trình..."
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_blocked
@@ -3126,38 +3142,38 @@ msgstr "Tờ trình nội bộ bị phong tỏa"
 #. module: thmdocument
 #: selection:thmdocument.config.settings,module_pad:0
 msgid "Task description is plain text"
-msgstr "Task description is plain text"
+msgstr "Mô tả tờ trình là văn bản thường"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:24
 #, python-format
 msgid "Task is Developed"
-msgstr "Task is Developed"
+msgstr "Tờ trình đang được xử lý"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:104
 #, python-format
 msgid "Task is completed"
-msgstr "Task is completed"
+msgstr "Tờ trình đã được duyệt"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:25
 #, python-format
 msgid "Task is tested"
-msgstr "Task is tested"
+msgstr "Tờ trình đã được kiểm tra"
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_new
 msgid "Task opened"
-msgstr "Task opened"
+msgstr "Tờ trình đã được tạo"
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_ready
 msgid "Task ready for Next Stage"
-msgstr "Task ready for Next Stage"
+msgstr "Tờ trình đã sẵn sàng để chuyển"
 
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.act_thmdocument_thmdocument_2_thmdocument_task_all
@@ -3224,7 +3240,7 @@ msgstr "Kiểm thử"
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:57
 #, python-format
 msgid "Test is OK, need to document"
-msgstr "Test is OK, need to document"
+msgstr "Kiểm tra đã OK"
 
 #. module: thmdocument
 #. openerp-web
@@ -3439,7 +3455,7 @@ msgstr "Timesheets can be used for several purposes:"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
 msgid "Timesheets to Approve"
-msgstr "Timesheets to Approve"
+msgstr "Lịch sử phê duyệt"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_resource_calendar_id
@@ -3490,12 +3506,8 @@ msgstr "Track customer satisfaction on tasks"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "Trich Yeu"
-msgstr "Trích yếu"
-
-#. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_trich_yeu
-msgid "Trich yeu"
+msgid "Trich yeu to trinh"
 msgstr "Trích yếu"
 
 #. module: thmdocument
@@ -3562,7 +3574,7 @@ msgstr "Email người dùng"
 #. module: thmdocument
 #: model:res.groups,name:thmdocument.group_thmdocument_user
 msgid "UserThmdocument"
-msgstr "UserThmdocument"
+msgstr "Người dùng văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3728,13 +3740,9 @@ msgstr "Write date"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "Y Kien"
-msgstr "Ý Kiến"
-
-#. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_y_kien
-msgid "Y kien"
-msgstr "Ý kiến"
+msgid "Y kien lanh dao"
+msgstr "Ý kiến lãnh đạo"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.task_type_edit
