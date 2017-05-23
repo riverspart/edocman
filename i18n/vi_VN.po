@@ -1540,7 +1540,7 @@ msgstr "Màn hình điều khiển"
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_de_xuat
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "De xuat thu ky"
-msgstr "Đề xuất thư ký"
+msgstr "Đề xuất thư ký CM"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_date_deadline
@@ -2279,13 +2279,9 @@ msgstr "Lãnh Đạo Đơn Vị"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_lanhdao_approve
-msgid "Lanh dao approve"
-msgstr "Lãnh đạo phê duyệt"
-
-#. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
-msgid "Lanh dao phe duyet"
-msgstr "Lãnh đạo phê duyệt"
+msgid "Chu tich phe duyet"
+msgstr "Chủ tịch phê duyệt"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
@@ -2400,7 +2396,7 @@ msgstr "Quản trị văn bản"
 #. module: thmdocument
 #: model:res.groups,name:thmdocument.group_thmdocument_manager
 msgid "ManagerThmdocument"
-msgstr "ManagerThmdocument"
+msgstr "Người quản lý văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -3131,12 +3127,12 @@ msgstr "Trạng thái của Tờ trình nội bộ được thay đổi"
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_name
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_name
 msgid "Task Title"
-msgstr "Task Title"
+msgstr "Tiêu đề tờ trình"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.view_task_form2
 msgid "Task Title..."
-msgstr "Task Title..."
+msgstr "Tiêu đề tờ trình..."
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_blocked
@@ -3146,38 +3142,38 @@ msgstr "Tờ trình nội bộ bị phong tỏa"
 #. module: thmdocument
 #: selection:thmdocument.config.settings,module_pad:0
 msgid "Task description is plain text"
-msgstr "Task description is plain text"
+msgstr "Mô tả tờ trình là văn bản thường"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:24
 #, python-format
 msgid "Task is Developed"
-msgstr "Task is Developed"
+msgstr "Tờ trình đang được xử lý"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:104
 #, python-format
 msgid "Task is completed"
-msgstr "Task is completed"
+msgstr "Tờ trình đã được duyệt"
 
 #. module: thmdocument
 #. openerp-web
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:25
 #, python-format
 msgid "Task is tested"
-msgstr "Task is tested"
+msgstr "Tờ trình đã được kiểm tra"
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_new
 msgid "Task opened"
-msgstr "Task opened"
+msgstr "Tờ trình đã được tạo"
 
 #. module: thmdocument
 #: model:mail.message.subtype,description:thmdocument.mt_task_ready
 msgid "Task ready for Next Stage"
-msgstr "Task ready for Next Stage"
+msgstr "Tờ trình đã sẵn sàng để chuyển"
 
 #. module: thmdocument
 #: model:ir.actions.act_window,name:thmdocument.act_thmdocument_thmdocument_2_thmdocument_task_all
@@ -3244,7 +3240,7 @@ msgstr "Kiểm thử"
 #: code:addons/thmdocument/static/src/js/web_planner_thmdocument.js:57
 #, python-format
 msgid "Test is OK, need to document"
-msgstr "Test is OK, need to document"
+msgstr "Kiểm tra đã OK"
 
 #. module: thmdocument
 #. openerp-web
@@ -3459,7 +3455,7 @@ msgstr "Timesheets can be used for several purposes:"
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
 msgid "Timesheets to Approve"
-msgstr "Timesheets to Approve"
+msgstr "Lịch sử phê duyệt"
 
 #. module: thmdocument
 #: model:ir.model.fields,help:thmdocument.field_thmdocument_thmdocument_resource_calendar_id
@@ -3578,7 +3574,7 @@ msgstr "Email người dùng"
 #. module: thmdocument
 #: model:res.groups,name:thmdocument.group_thmdocument_user
 msgid "UserThmdocument"
-msgstr "UserThmdocument"
+msgstr "Người dùng văn bản"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner

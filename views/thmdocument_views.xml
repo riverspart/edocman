@@ -367,8 +367,8 @@ action = model.activate_sample_thmdocument()
                                 class="o_task_user_field"
                                 options='{"no_open": True}'/>
                             <field name="date_assign" groups="base.group_no_one"/>
-                            <field name="date_nhan_du_ban_cung"/>
                             <field name="date_deadline"/>
+                            <field name="date_nhan_du_ban_cung"/>
 
                             <field name="legend_blocked" invisible="1"/>
                             <field name="legend_normal" invisible="1"/>
@@ -399,8 +399,8 @@ action = model.activate_sample_thmdocument()
                             <field name="de_xuat" type="html"/>
                             <div class="oe_clear"/>
                         </page>
-                        <page name="lanhdao_approve_page" string="Lanh dao phe duyet">
-                            <field name="lanhdao_approve" type="html"/>
+                        <page name="chutich_approve_page" string="Chu tich phe duyet">
+                            <field name="chutich_approve" type="html"/>
                             <div class="oe_clear"/>
                         </page>
                         <page name="change_history_page" string="Lich su chuyen">
