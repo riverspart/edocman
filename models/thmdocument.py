@@ -521,16 +521,6 @@ class Task(models.Model):
     # ------------------------------------------------
     # CRUD overrides
     # ------------------------------------------------
-    def open_task_modal(self, context=None):
-        return {
-            'name': 'thmdocument.task.form',
-            'type': 'ir.ui.view',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': context,
-            'res_model': 'thmdocument.task',
-        }
 
     @api.model
     def create(self, vals):
@@ -552,25 +542,25 @@ class Task(models.Model):
 
         return task
 
-
-
-
     @api.multi
     def write(self, vals):
 
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:
-			employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
-            if(vals.get('stage_id') == 5 ):
-                vals.update({'user_id' : employee[0].department_id.manager_id.user_id.id})
+            # resource = self.env['resource.resource'].search([('user_id', '=', self.env.uid)])
+            employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
+
+            _logger.info('tungnt employee %s', pprint.pformat(employee))
+            if (vals.get('stage_id') == 5):
+                vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
             # elif(vals.get('stage_id') == 6 ):
             #     vals.update({'user_id' : 5})
             # elif(vals.get('stage_id') == 7 ):
             #     vals.update({'user_id' : 5})
-            elif(vals.get('stage_id') == 8 ):
-                vals.update({'user_id' : 5})
-		
+            elif (vals.get('stage_id') == 8):
+                vals.update({'user_id': 5})
+
             vals['date_last_stage_update'] = now
             # reset kanban state when changing stage
             if 'kanban_state' not in vals:
@@ -582,9 +572,11 @@ class Task(models.Model):
         result = super(Task, self).write(vals)
 
         _logger.info('tungnt edit result %s', pprint.pformat(vals))
-
-        self.open_task_modal( self.env.context)
+        _logger.info('tungnt message_idst %s', pprint.pformat(self.message_ids))
+        # self.open_task_modal( self.env.context)
         return result
+
+
 
     # ---------------------------------------------------
     # Mail gateway
