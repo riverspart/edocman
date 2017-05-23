@@ -6,6 +6,9 @@ from lxml import etree
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
+
+import random
+
 import logging
 import pprint
 _logger = logging.getLogger(__name__)
@@ -354,11 +357,21 @@ class Task(models.Model):
     index=True, copy=False)
     date_end = fields.Datetime(string='Ending Date', index=True, copy=False)
     date_assign = fields.Datetime(string='Assigning Date', index=True, copy=False, readonly=True)
+    date_nhan_du_ban_cung = fields.Date(string='Ngay nhan du ban cung', index=True, copy=False)
     date_deadline = fields.Date(string='Deadline', index=True, copy=False)
     # tungnt start
-    trich_yeu = fields.Html(string='Trich yeu')
-    y_kien = fields.Html(string='Y kien')
-    de_xuat = fields.Html(string='De xuat')
+    trich_yeu = fields.Html(string='Trich yeu to trinh')
+
+    # @api.multi
+    # def _compute_workflows_network(self):
+    #     for record in self:
+    #         record.workflows_network = str(random.randint(1, 1e6))
+    #
+    # workflows_network = fields.Text(compute='_compute_workflows_network' ,store = True)
+
+    y_kien = fields.Html(string='Y kien lanh dao')
+    de_xuat = fields.Html(string='De xuat thu ky')
+    chutich_approve = fields.Html(string='Chu tich phe duyet')
     code = fields.Char(string='Code', required=True, index=True, default='/TTr-CNTT')
     code_office = fields.Char(string='Code Office', required=True, index=True, default='/TTr-VP')
     create_uid = fields.Many2one('res.users',
@@ -367,6 +380,7 @@ class Task(models.Model):
                               index=True, track_visibility='always' , readonly=True)
     linh_vuc_id = fields.Many2one('thmdocument.field',
                                  string='Linh Vuc',
+                                 required=False,
                                  default=lambda self: self.env.uid, track_visibility='always')
     phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='CNTT')
     don_vi_soan_thao = fields.Char(string='Don vi soan thao', required=True, index=True, default='CNTT')
@@ -376,6 +390,7 @@ class Task(models.Model):
     tra_lai_ban_goc = fields.Boolean(default=False,
                             help="Tra lai ban goc.")
 
+    ho_so_kem_theo = fields.Char(string='Ho so kem theo', required=False, index=True, default='')
     files_ids = fields.Many2many('thmdocument.file', 'thmdocument_file_task_rel', 'thmdocument_task_id', 'file_id',
                                 string='Ho So')
     # tungnt end
@@ -413,6 +428,8 @@ class Task(models.Model):
     legend_blocked = fields.Char(related='stage_id.legend_blocked', string='Kanban Blocked Explanation', readonly=True)
     legend_done = fields.Char(related='stage_id.legend_done', string='Kanban Valid Explanation', readonly=True)
     legend_normal = fields.Char(related='stage_id.legend_normal', string='Kanban Ongoing Explanation', readonly=True)
+
+
 
     @api.onchange('thmdocument_id')
     def _onchange_thmdocument(self):
@@ -561,6 +578,16 @@ class Task(models.Model):
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:
+            employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
+            if (vals.get('stage_id') == 5):
+                vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
+            elif (vals.get('stage_id') == 6):
+                vals.update({'user_id': 6})
+            elif (vals.get('stage_id') == 7):
+                vals.update({'user_id': 7})
+            elif (vals.get('stage_id') == 8):
+                vals.update({'user_id': 8})
+
             vals['date_last_stage_update'] = now
             # reset kanban state when changing stage
             if 'kanban_state' not in vals:
