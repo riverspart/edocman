@@ -404,39 +404,13 @@ action = model.activate_sample_thmdocument()
                             <div class="oe_clear"/>
                         </page>
                         <page name="change_history_page" string="Lich su chuyen">
-                            <field name="message_ids" widget="mail_thread"/>
+                            <field name="message_ids"  widget="mail_thread"/>
 
                             <!--<tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">-->
                             <!--<field name="workflows_network"/>-->
                             <!--</tree>-->
-                            <div id="mynetwork"></div>
-                            <script>
-                            // create an array with nodes
-                              var nodes = [
-                                {id: 1, label: 'Node 1'},
-                                {id: 2, label: 'Node 2'},
-                                {id: 3, label: 'Node 3'},
-                                {id: 4, label: 'Node 4'},
-                                {id: 5, label: 'Node 5'}
-                              ];
+                            <div t-att-data-id="filters_value.value" id="mynetwork"></div>
 
-                              // create an array with edges
-                              var edges = [
-                                {from: 1, to: 2, label: 'Node 4'},
-                                {from: 1, to: 3},
-                                {from: 2, to: 4},
-                                {from: 2, to: 5}
-                              ];
-
-                              // create a network
-                              var container = document.getElementById('mynetwork');
-                              var data = {
-                                nodes: nodes,
-                                edges: edges
-                              };
-                              var options = {};
-                              var network = new vis.Network(container, data, options);
-                            </script>
 
                             <div class="oe_clear"/>
                         </page>
