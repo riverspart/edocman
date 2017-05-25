@@ -394,7 +394,9 @@ class Task(models.Model):
                                  required=False,
                                  default=default_linh_vuc_id, track_visibility='always')
     phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='CNTT')
-    don_vi_soan_thao = fields.Char(string='Don vi soan thao', required=True, index=True, default='CNTT')
+    don_vi_soan_thao = fields.Many2one('hr.department',
+                                 string='Don vi soan thao',
+                                 required=False)
 
     thmdocument_related_ids = fields.Many2many('thmdocument.task','thmdocument_task_rel', 'thmdocument_task_id', 'thmdocument_task_related_id', string='Van ban lien quan')
 
@@ -549,6 +551,14 @@ class Task(models.Model):
     # ------------------------------------------------
     # CRUD overrides
     # ------------------------------------------------
+    def check_int(self, s):
+
+        str_input = str(s)
+        if (len(str_input) == 0):
+            return False
+        if str_input[0] in ('-', '+'):
+            return str_input[1:].isdigit()
+        return str_input.isdigit()
     @api.model
     def my_function(self, task):
         # self._cr.execute("SELECT * FROM mail_message msg INNER JOIN mail_tracking_value track ON msg.id = track.mail_message_id WHERE msg.res_id = %s AND msg.message_type = 'notification'", (task.get('id'),))
@@ -560,34 +570,35 @@ class Task(models.Model):
         # for msg in mail_message:
         #     data.append(msg.get('id'))
         # return json.dumps(data)
-
-        self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task'", (task.get('id'),))
-        mail_message = self.env.cr.dictfetchall()
-
         nodes = []
         edges = []
         data = []
-        i = 1
-        previous_user_id = 0;
-        for msg in mail_message:
-            self._cr.execute("SELECT * FROM mail_tracking_value tracking WHERE tracking.mail_message_id = %s ",(msg.get('id'),))
-            mail_tracking_values = self.env.cr.dictfetchall()
-            # _logger.info('tungnt save mail_tracking_value %s', pprint.pformat(mail_tracking_value))
+        if(self.check_int(task.get('id'))) :
+            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task'", (task.get('id'),))
+            mail_message = self.env.cr.dictfetchall()
 
-            for track in mail_tracking_values:
-                # if(track.get('field') == 'stage_id'):
-                #     task_stage = self.env['thmdocument.task.type'].search([('id', '=', track.get('new_value_integer'))])
-                #     nodes.append({'id': i, 'label': task_stage[0].name})
-                if (track.get('field') == 'user_id'):
-                    current_user_id = track.get('new_value_integer')
-                    if(current_user_id != previous_user_id):
-                        assigned_user = self.env['res.users'].browse(track.get('new_value_integer'))
-                        _logger.info('tungnt save assigned_user %s', pprint.pformat(assigned_user))
-                        nodes.append({'id': i, 'label': assigned_user.name})
-                        if (i >= 2):
-                            edges.append({'from': (i - 1), 'to': i, 'label': '(' + str(i - 1) + ')'})
-                        i = i + 1
-                        previous_user_id = current_user_id
+
+            i = 1
+            previous_user_id = 0;
+            for msg in mail_message:
+                self._cr.execute("SELECT * FROM mail_tracking_value tracking WHERE tracking.mail_message_id = %s ",(msg.get('id'),))
+                mail_tracking_values = self.env.cr.dictfetchall()
+                # _logger.info('tungnt save mail_tracking_value %s', pprint.pformat(mail_tracking_value))
+
+                for track in mail_tracking_values:
+                    # if(track.get('field') == 'stage_id'):
+                    #     task_stage = self.env['thmdocument.task.type'].search([('id', '=', track.get('new_value_integer'))])
+                    #     nodes.append({'id': i, 'label': task_stage[0].name})
+                    if (track.get('field') == 'user_id'):
+                        current_user_id = track.get('new_value_integer')
+                        if(current_user_id != previous_user_id):
+                            assigned_user = self.env['res.users'].browse(track.get('new_value_integer'))
+                            _logger.info('tungnt save assigned_user %s', pprint.pformat(assigned_user))
+                            nodes.append({'id': i, 'label': assigned_user.name})
+                            if (i >= 2):
+                                edges.append({'from': (i - 1), 'to': i, 'label': '(' + str(i - 1) + ')'})
+                            i = i + 1
+                            previous_user_id = current_user_id
 
         data.append({'nodes' : nodes , 'edges' : edges})
         return json.dumps(data)

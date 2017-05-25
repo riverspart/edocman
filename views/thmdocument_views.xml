@@ -379,7 +379,7 @@ action = model.activate_sample_thmdocument()
                             <field name="code_office"/>
                             <field name="linh_vuc_id" options='{"no_open": True, "no_create": True}'/>
                             <field name="phong_soan_thao"/>
-                            <field name="don_vi_soan_thao"/>
+                            <field name="don_vi_soan_thao" options='{"no_open": True, "no_create": True}'/>
                         </group>
                     </group>
                     <notebook>
