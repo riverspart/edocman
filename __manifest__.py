@@ -17,6 +17,7 @@
         'web_kanban',
         'web_planner',
         'web_tour',
+        'hr',
     ],
     'description': """
 Track multi-level thmdocuments, tasks, work done on tasks
@@ -45,8 +46,11 @@ Dashboard / Reports for Thmdocument Management will include:
         'views/res_config_views.xml',
         'views/thmdocument_templates.xml',
         'views/tour_views.xml',
+        'views/hr_department.xml',
         'data/web_planner_data.xml',
         'data/thmdocument_mail_template_data.xml',
+        'report/thmdocument_task_reports.xml',
+        'report/thmdocument_task_templates.xml',
     ],
     'qweb': ['static/src/xml/thmdocument.xml'],
     # 'demo': ['data/thmdocument_demo.xml'],

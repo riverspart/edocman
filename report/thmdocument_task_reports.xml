@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="thmdocument_task_report"
+            string="Task"
+            model="thmdocument.task"
+            report_type="qweb-pdf"
+            name="thmdocument.report_thmdocument_task_label"
+            file="thmdocument.report_thmdocument_task_label"/>
+
+
+    </data>
+</odoo>
