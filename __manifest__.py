@@ -49,6 +49,8 @@ Dashboard / Reports for Thmdocument Management will include:
         'views/hr_department.xml',
         'data/web_planner_data.xml',
         'data/thmdocument_mail_template_data.xml',
+        'report/thmdocument_task_reports.xml',
+        'report/thmdocument_task_templates.xml',
     ],
     'qweb': ['static/src/xml/thmdocument.xml'],
     # 'demo': ['data/thmdocument_demo.xml'],
