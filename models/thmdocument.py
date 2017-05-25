@@ -310,9 +310,10 @@ class Task(models.Model):
 
     @api.model
     def default_dapartment_code(self):
+         last_id = self.env['thmdocument.task'].search([])[-1].id
          employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
          code =  employee[0].department_id.code
-         return code
+         return str(last_id) +  code
 
     def _get_default_partner(self):
         if 'default_thmdocument_id' in self.env.context:
