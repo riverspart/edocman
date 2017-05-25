@@ -18,7 +18,7 @@ odoo.define('thmdocument.task_graph', function(require) {
                     fields.id = id_input.val();
                     custom_model.call('my_function',[fields]).then(function(result){
                           console.log(result);//show in console Hello
-                        var data = JSON.parse(result);
+                         var data = JSON.parse(result);
                          var nodes = data[0].nodes;
                          var edges = data[0].edges;
                          var container = document.getElementById('mynetwork');

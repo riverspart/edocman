@@ -304,6 +304,16 @@ class Task(models.Model):
             result['date_assign'] = fields.Datetime.now()
         return result
 
+    @api.model
+    def default_linh_vuc_id(self):
+        return 7
+
+    @api.model
+    def default_dapartment_code(self):
+         employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
+         code =  employee[0].department_id.code
+         return code
+
     def _get_default_partner(self):
         if 'default_thmdocument_id' in self.env.context:
             default_thmdocument_id = self.env['thmdocument.thmdocument'].browse(self.env.context['default_thmdocument_id'])
@@ -372,7 +382,7 @@ class Task(models.Model):
     y_kien = fields.Html(string='Y kien lanh dao')
     de_xuat = fields.Html(string='De xuat thu ky')
     chutich_approve = fields.Html(string='Chu tich phe duyet')
-    code = fields.Char(string='Code', required=True, index=True, default='/TTr-CNTT')
+    code = fields.Char(string='Code', required=True, index=True, default=default_dapartment_code)
     code_office = fields.Char(string='Code Office', required=True, index=True, default='/TTr-VP')
     create_uid = fields.Many2one('res.users',
                               string='Nguoi tao',
@@ -381,7 +391,7 @@ class Task(models.Model):
     linh_vuc_id = fields.Many2one('thmdocument.field',
                                  string='Linh Vuc',
                                  required=False,
-                                 default=lambda self: self.env.uid, track_visibility='always')
+                                 default=default_linh_vuc_id, track_visibility='always')
     phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='CNTT')
     don_vi_soan_thao = fields.Char(string='Don vi soan thao', required=True, index=True, default='CNTT')
 
