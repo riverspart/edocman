@@ -310,9 +310,16 @@ class Task(models.Model):
 
     @api.model
     def default_dapartment_code(self):
-         last_id = self.env['thmdocument.task'].search([])[-1].id
          employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
-         code =  employee[0].department_id.code
+         code = employee[0].department_id.code
+
+         number_tasks = self.env['thmdocument.task'].search([])
+         if(len(number_tasks) == 0):
+            last_id = 1
+         else:
+            last_id = number_tasks[-1].id
+
+
          return str(last_id) +  code
 
     def _get_default_partner(self):
