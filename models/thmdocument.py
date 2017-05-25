@@ -314,11 +314,11 @@ class Task(models.Model):
          code = employee[0].department_id.code
 
          number_tasks = self.env['thmdocument.task'].search([])
-         if(len(number_tasks) == 0):
-            last_id = 1
-         else:
-            last_id = number_tasks[-1].id
-
+         last_id = len(number_tasks) + 1
+         # if(len(number_tasks) == 0):
+         #    last_id = 1
+         # else:
+         #    last_id = number_tasks[-1].id
 
          return str(last_id) +  code
 
@@ -581,7 +581,7 @@ class Task(models.Model):
         edges = []
         data = []
         if(self.check_int(task.get('id'))) :
-            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task'", (task.get('id'),))
+            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task' AND msg.create_uid != 1", (task.get('id'),))
             mail_message = self.env.cr.dictfetchall()
 
 
