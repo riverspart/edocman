@@ -180,7 +180,7 @@
         <record id="thmdocument_stage_1" model="thmdocument.task.type">
             <field name="sequence">2</field>
             <field name="name">Lanh Dao Don Vi</field>
-            <field name="legend_blocked">Need functional or technical help</field>
+            <field name="legend_blocked">Not validated</field>
             <field name="legend_done">Buzz or set as done</field>
         </record>
         <record id="thmdocument_stage_2" model="thmdocument.task.type">

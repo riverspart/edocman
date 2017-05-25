@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="report_thmdocument_task_label">
+    <t t-call="report.external_layout">
+        <div class="page">
+            <div class="row">
+                <h3>Title</h3>
+            </div>
+        </div>
+    </t>
+</template>
+
+</data>
+</odoo>
