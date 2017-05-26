@@ -3,11 +3,12 @@
     <data>
         <report
             id="thmdocument_task_report"
-            string="Task"
+            string="Tờ trình này"
             model="thmdocument.task"
             report_type="qweb-pdf"
-            name="thmdocument.report_thmdocument_task_label"
-            file="thmdocument.report_thmdocument_task_label"/>
+            name="thmdocument.report_thmdocument_task"
+            file="thmdocument.report_thmdocument_task"/>
+
 
 
     </data>
