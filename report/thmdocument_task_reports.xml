@@ -3,7 +3,7 @@
     <data>
         <report
             id="thmdocument_task_report"
-            string="Task"
+            string="Tờ trình này"
             model="thmdocument.task"
             report_type="qweb-pdf"
             name="thmdocument.report_thmdocument_task"

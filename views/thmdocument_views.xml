@@ -363,9 +363,8 @@ action = model.activate_sample_thmdocument()
                     <group>
                         <group>
                             <field name="thmdocument_id" domain="[('active', '=', True)]" context="{'default_use_tasks':1}"/>
-                            <field name="user_id"
-                                class="o_task_user_field"
-                                options='{"no_open": True}'/>
+                            <field name="user_id" class="o_task_user_field" options='{"no_open": True}'/>
+                            <field name="support_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
                             <field name="date_assign" groups="base.group_no_one"/>
                             <field name="date_deadline"/>
                             <field name="date_nhan_du_ban_cung"/>
@@ -404,13 +403,10 @@ action = model.activate_sample_thmdocument()
                             <div class="oe_clear"/>
                         </page>
                         <page name="change_history_page" string="Lich su chuyen">
-                            <field name="message_ids"  widget="mail_thread"/>
-
-                            <!--<tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">-->
-                            <!--<field name="workflows_network"/>-->
-                            <!--</tree>-->
-                            <div t-att-data-id="filters_value.value" id="mynetwork"></div>
-
+                            <div id="to-trinh-history">
+                                <field name="message_ids"  widget="mail_thread"/>
+                                <div t-att-data-id="filters_value.value" id="mynetwork"></div>
+                            </div>
 
                             <div class="oe_clear"/>
                         </page>

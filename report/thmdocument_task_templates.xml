@@ -78,7 +78,7 @@
                                         </td>
                                         <td>
                                             <p style="text-align: left;">
-                                                <span t-field="task.y_kien"/>
+                                                <span t-field="task.de_xuat"/>
                                             </p>
                                         </td>
                                     </tr>
