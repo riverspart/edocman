@@ -1,15 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-<template id="report_thmdocument_task_label">
-    <t t-call="report.external_layout">
-        <div class="page">
-            <div class="row">
-                <h3>Title</h3>
-            </div>
-        </div>
-    </t>
-</template>
+    <data>
+        <template id="report_thmdocument_task_label">
 
-</data>
+        </template>
+        <template id="report_thmdocument_task">
+            <t t-call="report.html_container">
+                <div class="page">
+                    <t t-foreach="docs" t-as="task">
+                        <div style="width: 7in 9.25in;padding: 0 3em;">
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="http://tanhoangminh.com.vn/wp-content/themes/blankslate/assets/images/logo.png"
+                                                 alt="" width="150" height="100"/>
+                                        </td>
+                                        <td>
+                                            <p style="text-align: center;">
+                                                <strong>PHIẾU XỬ LÝ VĂN BẢN<br/>VĂN PHÒNG CHỦ TỊCH - TỔNG GIÁM ĐỐC
+                                                </strong>
+                                            </p>
+                                            <p style="text-align: center;">---------------------</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p style="text-align: right;">
+                                                <em>Hà Nội, nggày 27 tháng 12 năm 2016</em>
+                                            </p>
+                                            <p style="text-align: center;">
+                                                <strong>Kính trình: Ông Đỗ Anh Dũng - Chủ tịch -Tổng Giám
+                                                    đốc Tân Hoàng Minh Group
+                                                </strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%" border="1" style="border-collapse:collapse;" cellpadding="10">
+                                <tbody>
+                                    <tr>
+                                        <td style=" width: 20%; ">
+                                            <p style="text-align: left;">
+                                                <strong>Đơn vị trình:</strong>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p style="text-align: left;">
+                                                <span t-field="task.don_vi_soan_thao"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style=" width: 20%; ">
+                                            <p style="text-align: left;">
+                                                <strong>Về việc:</strong>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p style="text-align: left;">
+                                                <span t-field="task.name"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style=" width: 20%; ">
+                                            <p style="text-align: left;">
+                                                <strong>Ý kiến của VP CT-TGĐ:</strong>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p style="text-align: left;">
+                                                <span t-field="task.y_kien"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p style="text-align: center;">
+                                                <strong>Phê duyệt của CT-TGĐ</strong>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p style="text-align: center;">
+                                                <strong>Cán Bộ VP Chủ Tịch</strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
 </odoo>
