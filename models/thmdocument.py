@@ -311,7 +311,9 @@ class Task(models.Model):
     @api.model
     def default_dapartment_code(self):
          employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
-         code = employee[0].department_id.code
+         code = ''
+         if employee:
+            code = employee[0].department_id.code
 
          number_tasks = self.env['thmdocument.task'].search([])
          last_id = len(number_tasks) + 1
@@ -638,15 +640,16 @@ class Task(models.Model):
             # resource = self.env['resource.resource'].search([('user_id', '=', self.env.uid)])
             employee = self.env['hr.employee'].search([('user_id', '=', self.create_uid.id)])
             _logger.info('tungnt employee %s', pprint.pformat(employee))
-            if (vals.get('stage_id') == 5):
+
+            if (vals.get('stage_id') == 5): #Lanh Dao Don Vi
                 vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
-            elif (vals.get('stage_id') == 4):
+            elif (vals.get('stage_id') == 4): #Khoi Tao
                 vals.update({'user_id': self.create_uid.id})
-            # elif(vals.get('stage_id') == 6 ):
+            # elif(vals.get('stage_id') == 16 ): #Van Thu
             #     vals.update({'user_id' : 5})
-            # elif(vals.get('stage_id') == 7 ):
+            # elif(vals.get('stage_id') == 17 ): #Thu ki chuyen mon
             #     vals.update({'user_id' : 5})
-            elif (vals.get('stage_id') == 8):
+            elif (vals.get('stage_id') == 8): # Chu Tich
                 vals.update({'user_id': 5})
 
             vals['date_last_stage_update'] = now
@@ -800,7 +803,9 @@ class Task(models.Model):
             headers['X-Odoo-Tags'] = ','.join(self.tag_ids.mapped('name'))
         res['headers'] = repr(headers)
         return res
-
+    _sql_constraints = [
+        ('code_uniq', 'unique (code)', 'Ma to trinh da co!'),
+    ]
 
 class AccountAnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
