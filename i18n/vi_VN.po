@@ -1058,14 +1058,14 @@ msgstr "Tờ trình nội bộ đã được trình"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_report_thmdocument_task_user_user_id
 msgid "Assigned To"
-msgstr "Người xử lý"
+msgstr "Người chủ trì"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_user_id
 #: model:ir.ui.view,arch_db:thmdocument.view_task_search_form
 #: model:ir.ui.view,arch_db:thmdocument.view_task_thmdocument_user_search
 msgid "Assigned to"
-msgstr "Người xử lý"
+msgstr "Người chủ trì"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_date_assign

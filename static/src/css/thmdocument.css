@@ -38,3 +38,16 @@
   margin-top: 6px;
   margin-right: 8px;
 }
+
+#to-trinh-history .o_mail_thread ul.o_mail_thread_message_tracking {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#to-trinh-history .o_mail_thread ul.o_mail_thread_message_tracking li {
+    display: inline-flex;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
