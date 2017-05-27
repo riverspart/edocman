@@ -388,9 +388,7 @@ class Task(models.Model):
     #         record.workflows_network = str(random.randint(1, 1e6))
     #
     # workflows_network = fields.Text(compute='_compute_workflows_network' ,store = True)
-
     support_ids = fields.Many2many('res.users', string='Nguoi ho tro')
-
     y_kien = fields.Html(string='Y kien lanh dao')
     de_xuat = fields.Html(string='De xuat thu ky')
     chutich_approve = fields.Html(string='Chu tich phe duyet')
@@ -404,7 +402,7 @@ class Task(models.Model):
                                  string='Linh Vuc',
                                  required=False,
                                  default=default_linh_vuc_id, track_visibility='always')
-    phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='')
+    phong_soan_thao = fields.Char(string='Phong soan thao', required=False, index=True, default='')
     don_vi_soan_thao = fields.Many2one('hr.department',
                                  string='Don vi soan thao',
                                  required=False)
@@ -586,10 +584,10 @@ class Task(models.Model):
         edges = []
         data = []
         if(self.check_int(task.get('id'))) :
-            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task' AND msg.create_uid != 1", (task.get('id'),))
+            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task' AND msg.create_uid != 1 ORDER BY msg.create_date ASC", (task.get('id'),))
             mail_message = self.env.cr.dictfetchall()
 
-            i = len(mail_message)
+            i = 0
             previous_user_id = 0;
             for msg in mail_message:
                 self._cr.execute("SELECT * FROM mail_tracking_value tracking WHERE tracking.mail_message_id = %s ",(msg.get('id'),))
@@ -605,22 +603,23 @@ class Task(models.Model):
                     elif (track.get('field') == 'stage_id'):
                         current_stage_id = track.get('new_value_integer')
 
-                if(current_user_id != previous_user_id or current_stage_id != previous_stage_id):
+                if(current_user_id != previous_user_id): #or current_stage_id != previous_stage_id):
                     assigned_user = self.env['res.users'].browse(current_user_id)
                     _logger.info('tungnt save assigned_user %s', pprint.pformat(assigned_user))
                     if not current_user_id in users:
                         users[current_user_id] = assigned_user.name;
                         nodes.append({'id': current_user_id, 'label': assigned_user.name})
-                    if (i >= 2):
-                        if (current_user_id != previous_user_id):
-                            label = u'Chuyển'
-                        else:
-                            label = u'Cập nhật'
-                        edges.append({'from': previous_user_id, 'to': current_user_id, 'label': u'{}.{}'.format(i - 1, label)})
-                    i = i - 1
+                    if (i > 0):
+                        #if (current_user_id != previous_user_id):
+                        #   label = u'Chuyển'
+                        #else:
+                        #    label = u'Cập nhật'
+                        label = u'Chuyển'
+                        edges.append({'from': previous_user_id, 'to': current_user_id, 'label': u'{}.{}'.format(i, label)})
+                    i = i + 1
 
                 previous_user_id = current_user_id
-                previous_stage_id = current_stage_id
+                #previous_stage_id = current_stage_id
 
         #s = '},{'.join(u'"id":{}, "label":"{}"'.format(key, val) for key, val in nodes.items())
         #s = '[{"nodes":[{'+ s +'}] , "edges":' + json.dumps(edges) + '}]'
@@ -658,7 +657,6 @@ class Task(models.Model):
             # resource = self.env['resource.resource'].search([('user_id', '=', self.env.uid)])
             employee = self.env['hr.employee'].search([('user_id', '=', self.create_uid.id)])
             _logger.info('tungnt employee %s', pprint.pformat(employee))
-
             if (vals.get('stage_id') == 5): #Lanh Dao Don Vi
                 vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
             elif (vals.get('stage_id') == 4): #Khoi Tao
@@ -683,6 +681,7 @@ class Task(models.Model):
         # add follower
         if vals.get('support_ids'):
             self.message_subscribe([support['id'] for support in self.resolve_2many_commands('support_ids', vals['support_ids'], ['id'])])
+
 
         return result
 
