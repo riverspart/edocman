@@ -388,7 +388,7 @@ class Task(models.Model):
     #         record.workflows_network = str(random.randint(1, 1e6))
     #
     # workflows_network = fields.Text(compute='_compute_workflows_network' ,store = True)
-    support_ids = fields.Many2many('res.users', string='Nguoi ho tro', track_visibility='always')
+    support_ids = fields.Many2many('res.users',  'thmdocument_support_task_rel', 'thmdocument_task_id', 'user_id', string='Nguoi ho tro', track_visibility='onchange')
     y_kien = fields.Html(string='Y kien lanh dao')
     de_xuat = fields.Html(string='De xuat thu ky')
     chutich_approve = fields.Html(string='Chu tich phe duyet')
