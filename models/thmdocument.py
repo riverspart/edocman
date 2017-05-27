@@ -388,7 +388,7 @@ class Task(models.Model):
     #         record.workflows_network = str(random.randint(1, 1e6))
     #
     # workflows_network = fields.Text(compute='_compute_workflows_network' ,store = True)
-    support_ids = fields.Many2many('res.users', string='Nguoi ho tro')
+    support_ids = fields.Many2many('res.users', string='Nguoi ho tro', track_visibility='always')
     y_kien = fields.Html(string='Y kien lanh dao')
     de_xuat = fields.Html(string='De xuat thu ky')
     chutich_approve = fields.Html(string='Chu tich phe duyet')
@@ -641,7 +641,8 @@ class Task(models.Model):
         task = super(Task, self.with_context(context)).create(vals)
 
         # add follower
-        task.message_subscribe(task.support_ids.ids)
+        task.message_subscribe_users(task.support_ids.ids)
+
         _logger.info('tungnt save result %s', pprint.pformat(task))
 
         # self.open_task_modal(context)
@@ -680,7 +681,7 @@ class Task(models.Model):
 
         # add follower
         if vals.get('support_ids'):
-            self.message_subscribe([support['id'] for support in self.resolve_2many_commands('support_ids', vals['support_ids'], ['id'])])
+            self.message_subscribe_users([support['id'] for support in self.resolve_2many_commands('support_ids', vals['support_ids'], ['id'])])
 
 
         return result
