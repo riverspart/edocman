@@ -376,7 +376,7 @@ action = model.activate_sample_thmdocument()
                         <group>
                             <field name="code"/>
                             <field name="code_office"/>
-                            <field name="linh_vuc_id" options='{"no_open": True, "no_create": True}'/>
+                            <!--<field name="linh_vuc_id" options='{"no_open": True, "no_create": True}'/>-->
                             <field name="phong_soan_thao"/>
                             <field name="don_vi_soan_thao" options='{"no_open": True, "no_create": True}'/>
                         </group>
@@ -390,11 +390,12 @@ action = model.activate_sample_thmdocument()
                             <field name="description" type="html"/>
                             <div class="oe_clear"/>
                         </page>
-                        <page name="y_kien_page" string="Y kien lanh dao">
-                            <field name="y_kien" type="html"/>
+                        <page name="y_kien_page" string="Y kien lanh dao" >
+                            <field name="y_kien" type="html" />
                             <div class="oe_clear"/>
                         </page>
-                        <page name="de_xuat_page" string="De xuat thu ky">
+                        <page name="de_xuat_page" string="De xuat thu ky"
+                              groups="thmdocument.group_thmdocument_chu_tich,thmdocument.group_thmdocument_thu_ky_cm">
                             <field name="de_xuat" type="html"/>
                             <div class="oe_clear"/>
                         </page>
@@ -404,7 +405,7 @@ action = model.activate_sample_thmdocument()
                         </page>
                         <page name="change_history_page" string="Lich su chuyen">
                             <div id="to-trinh-history">
-                                <field name="message_ids"  widget="mail_thread"/>
+                                <!--<field name="message_ids"  widget="mail_thread"/>-->
                                 <div t-att-data-id="filters_value.value" id="mynetwork"></div>
                             </div>
 

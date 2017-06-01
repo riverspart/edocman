@@ -46,8 +46,8 @@
         <record id="thmdocument_stage_1" model="thmdocument.task.type">
             <field name="sequence">10</field>
             <field name="name">In Progress</field>
-            <field name="legend_blocked">Need functional or technical help</field>
-            <field name="legend_done">Buzz or set as done</field>
+            <field name="legend_blocked">Từ chối</field>
+            <field name="legend_done">Sẵn sàng</field>
         </record>
         <record id="thmdocument_stage_2" model="thmdocument.task.type">
             <field name="sequence">20</field>
@@ -57,7 +57,7 @@
         <record id="thmdocument_stage_3" model="thmdocument.task.type">
             <field name="sequence">30</field>
             <field name="name">Cancelled</field>
-            <field name="legend_done">Ready to reopen</field>
+            <field name="legend_done">Sẵn sàng</field>
             <field name="fold" eval="True"/>
         </record>
 

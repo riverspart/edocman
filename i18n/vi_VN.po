@@ -2426,7 +2426,7 @@ msgstr "Managing notifications is essential: too few and you risk missing critic
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
 msgid "Marketing Department"
-msgstr "Marketing Department"
+msgstr "Bộ phận Marketing"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_favorite_user_ids
@@ -2500,6 +2500,11 @@ msgstr "New repair added"
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_date_nhan_du_ban_cung
 msgid "Ngay nhan du ban cung"
 msgstr "Ngày nhận đủ bản cứng"
+
+#. module: thmdocument
+#: model:ir.model.fields,field_description:thmdocument.field_thmdocument_task_support_ids
+msgid "Nguoi ho tro"
+msgstr "Người hỗ trợ"
 
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_file_create_uid
@@ -2579,7 +2584,7 @@ msgstr "Odoo's thmdocument management allows you to manage the pipeline of your 
 #: selection:thmdocument.thmdocument,privacy_visibility:0
 #, python-format
 msgid "On invitation only"
-msgstr "Chỉ cho lời mời"
+msgstr "Nhìn thấy bởi những người được mời"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner
@@ -2727,7 +2732,7 @@ msgstr "Priority Management Explanation"
 #. module: thmdocument
 #: model:ir.model.fields,field_description:thmdocument.field_thmdocument_thmdocument_privacy_visibility
 msgid "Privacy"
-msgstr "Privacy"
+msgstr "Bảo mật"
 
 #. module: thmdocument
 #: model:ir.ui.view,arch_db:thmdocument.thmdocument_planner

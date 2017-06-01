@@ -8,6 +8,8 @@
     'category': 'Thmdocument',
     'sequence': 10,
     'summary': 'Thmdocuments, Tasks',
+    'price': 1250000,
+    'currency': 'VND',
     'depends': [
         'base_setup',
         'product',

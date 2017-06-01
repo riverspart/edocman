@@ -53,7 +53,7 @@ class ThmdocumentTaskType(models.Model):
 
 class Thmdocument(models.Model):
     _name = "thmdocument.thmdocument"
-    _description = "Thmdocument"
+    _description = u"Văn bản"
     _inherit = ['mail.alias.mixin', 'mail.thread', 'ir.needaction_mixin']
     _inherits = {'account.analytic.account': "analytic_account_id"}
     _order = "sequence, name, id"
@@ -290,7 +290,7 @@ class Thmdocument(models.Model):
 
 class Task(models.Model):
     _name = "thmdocument.task"
-    _description = "Task"
+    _description = u"Tờ trình"
     _date_name = "date_start"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -305,8 +305,8 @@ class Task(models.Model):
         return result
 
     @api.model
-    def default_linh_vuc_id(self):
-        return 7
+    # def default_linh_vuc_id(self):
+    #     return 7
 
     @api.model
     def default_dapartment_code(self):
@@ -315,14 +315,13 @@ class Task(models.Model):
          if employee:
             code = employee[0].department_id.code
 
-         number_tasks = self.env['thmdocument.task'].search([])
-         last_id = len(number_tasks) + 1
-         # if(len(number_tasks) == 0):
-         #    last_id = 1
-         # else:
-         #    last_id = number_tasks[-1].id
-
-         return str(last_id) +  code
+         self._cr.execute('SELECT MAX(id) FROM thmdocument_task')
+         max_id = self.env.cr.dictfetchall()
+         if max_id[0]['max']:
+             id = max_id[0]['max'] + 1
+         else:
+             id = 1
+         return '{}{}'.format(id, code)
 
     def _get_default_partner(self):
         if 'default_thmdocument_id' in self.env.context:
@@ -388,7 +387,7 @@ class Task(models.Model):
     #         record.workflows_network = str(random.randint(1, 1e6))
     #
     # workflows_network = fields.Text(compute='_compute_workflows_network' ,store = True)
-    support_ids = fields.Many2many('res.users', string='Nguoi ho tro')
+    support_ids = fields.Many2many('res.users',  'thmdocument_support_task_rel', 'thmdocument_task_id', 'user_id', string='Nguoi ho tro', track_visibility='onchange')
     y_kien = fields.Html(string='Y kien lanh dao')
     de_xuat = fields.Html(string='De xuat thu ky')
     chutich_approve = fields.Html(string='Chu tich phe duyet')
@@ -398,11 +397,11 @@ class Task(models.Model):
                               string='Nguoi tao',
                               default=lambda self: self.env.uid,
                               index=True, track_visibility='always' , readonly=True)
-    linh_vuc_id = fields.Many2one('thmdocument.field',
-                                 string='Linh Vuc',
-                                 required=False,
-                                 default=default_linh_vuc_id, track_visibility='always')
-    phong_soan_thao = fields.Char(string='Phong soan thao', required=True, index=True, default='')
+    # linh_vuc_id = fields.Many2one('thmdocument.field',
+    #                              string='Linh Vuc',
+    #                              required=False,
+    #                              default=default_linh_vuc_id, track_visibility='always')
+    phong_soan_thao = fields.Char(string='Phong soan thao', required=False, index=True, default='')
     don_vi_soan_thao = fields.Many2one('hr.department',
                                  string='Don vi soan thao',
                                  required=False)
@@ -584,10 +583,10 @@ class Task(models.Model):
         edges = []
         data = []
         if(self.check_int(task.get('id'))) :
-            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task' AND msg.create_uid != 1", (task.get('id'),))
+            self._cr.execute("SELECT * FROM mail_message msg WHERE msg.res_id = %s AND msg.message_type = 'notification' AND msg.model = 'thmdocument.task' AND msg.create_uid != 1 ORDER BY msg.create_date ASC", (task.get('id'),))
             mail_message = self.env.cr.dictfetchall()
 
-            i = len(mail_message)
+            i = 0
             previous_user_id = 0;
             for msg in mail_message:
                 self._cr.execute("SELECT * FROM mail_tracking_value tracking WHERE tracking.mail_message_id = %s ",(msg.get('id'),))
@@ -603,22 +602,23 @@ class Task(models.Model):
                     elif (track.get('field') == 'stage_id'):
                         current_stage_id = track.get('new_value_integer')
 
-                if(current_user_id != previous_user_id or current_stage_id != previous_stage_id):
+                if(current_user_id != previous_user_id): #or current_stage_id != previous_stage_id):
                     assigned_user = self.env['res.users'].browse(current_user_id)
                     _logger.info('tungnt save assigned_user %s', pprint.pformat(assigned_user))
                     if not current_user_id in users:
                         users[current_user_id] = assigned_user.name;
                         nodes.append({'id': current_user_id, 'label': assigned_user.name})
-                    if (i >= 2):
-                        if (current_user_id != previous_user_id):
-                            label = u'Chuyển'
-                        else:
-                            label = u'Cập nhật'
-                        edges.append({'from': previous_user_id, 'to': current_user_id, 'label': u'{}.{}'.format(i - 1, label)})
-                    i = i - 1
+                    if (i > 0):
+                        #if (current_user_id != previous_user_id):
+                        #   label = u'Chuyển'
+                        #else:
+                        #    label = u'Cập nhật'
+                        label = u'Chuyển'
+                        edges.append({'from': previous_user_id, 'to': current_user_id, 'label': u'{}.{}'.format(i, label)})
+                    i = i + 1
 
                 previous_user_id = current_user_id
-                previous_stage_id = current_stage_id
+                #previous_stage_id = current_stage_id
 
         #s = '},{'.join(u'"id":{}, "label":"{}"'.format(key, val) for key, val in nodes.items())
         #s = '[{"nodes":[{'+ s +'}] , "edges":' + json.dumps(edges) + '}]'
@@ -627,6 +627,10 @@ class Task(models.Model):
 
     @api.model
     def create(self, vals):
+        sid = vals.get('stage_id')
+        if not self.is_khoitao(sid):
+            raise ValidationError(u'Không được phép tạo trái tuyến!')
+            return False
 
         # context: no_log, because subtype already handle this
         context = dict(self.env.context, mail_create_nolog=True)
@@ -640,7 +644,8 @@ class Task(models.Model):
         task = super(Task, self.with_context(context)).create(vals)
 
         # add follower
-        task.message_subscribe(task.support_ids.ids)
+        task.message_subscribe_users(task.support_ids.ids)
+
         _logger.info('tungnt save result %s', pprint.pformat(task))
 
         # self.open_task_modal(context)
@@ -648,7 +653,43 @@ class Task(models.Model):
         return task
 
     @api.multi
+    def is_khoitao(self, sid):
+        return sid == 4
+
+    @api.multi
+    def is_lanhdao(self, sid):
+        return sid == 5
+
+    @api.multi
+    def is_vanthu(self, sid):
+        return sid == 6
+
+    @api.multi
+    def is_thukycm(self, sid):
+        return sid == 7
+
+    @api.multi
+    def is_chutich(self, sid):
+        return sid == 8
+
+    @api.multi
+    def unlink(self):
+        current_login_uid = self.env.context['uid']
+        if (self.user_id.id
+            and not (self.user_id.id == current_login_uid)):
+            raise ValidationError(u'Không được phép thay đổi!')
+            return False
+        res = super(Task, self).unlink()
+        return res
+
+    @api.multi
     def write(self, vals):
+        current_login_uid = self.env.context['uid']
+        if (self.user_id.id
+            and not (self.user_id.id == current_login_uid)
+            and not (len(vals) == 1 and ('message_follower_ids' in vals.keys()))): #right after update, system automatically call to update message_follower_ids
+            raise ValidationError(u'Không được phép thay đổi!')
+            return False
 
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
@@ -656,16 +697,37 @@ class Task(models.Model):
             # resource = self.env['resource.resource'].search([('user_id', '=', self.env.uid)])
             employee = self.env['hr.employee'].search([('user_id', '=', self.create_uid.id)])
             _logger.info('tungnt employee %s', pprint.pformat(employee))
-            if (vals.get('stage_id') == 5): #Lanh Dao Don Vi
-                vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
-            elif (vals.get('stage_id') == 4): #Khoi Tao
-                vals.update({'user_id': self.create_uid.id})
-            # elif(vals.get('stage_id') == 16 ): #Van Thu
+            sid = vals.get('stage_id')
+            last_sid = self.stage_id.id
+            if self.is_khoitao(sid): #Khoi Tao
+                if not self.is_chutich(last_sid):
+                    vals.update({'user_id': self.create_uid.id})
+                else:
+                    raise ValidationError(u'Không được phép chuyển trái tuyến!')
+                    return False
+            elif self.is_lanhdao(sid): #Lanh Dao Don Vi
+                if not self.is_chutich(last_sid):
+                    vals.update({'user_id': employee[0].department_id.manager_id.user_id.id})
+                else:
+                    raise ValidationError(u'Không được phép chuyển trái tuyến!')
+                    return False
+            elif(self.is_vanthu(sid) #Van Thu
+                 and not (self.is_lanhdao(last_sid)
+                          or self.is_thukycm(last_sid))):
+                raise ValidationError(u'Không được phép chuyển trái tuyến!')
+                return False
+            elif(self.is_thukycm(sid) #Thu ki chuyen mon
+                 and not (self.is_vanthu(last_sid)
+                          or self.is_chutich(last_sid))):
+                raise ValidationError(u'Không được phép chuyển trái tuyến!')
+                return False
             #     vals.update({'user_id' : 5})
-            # elif(vals.get('stage_id') == 17 ): #Thu ki chuyen mon
-            #     vals.update({'user_id' : 5})
-            elif (vals.get('stage_id') == 8): # Chu Tich
-                vals.update({'user_id': 5})
+            elif (self.is_chutich(sid)): # Chu Tich
+                if self.is_thukycm(last_sid):
+                    vals.update({'user_id': 5})
+                else:
+                    raise ValidationError(u'Không được phép chuyển trái tuyến!')
+                    return False
 
             vals['date_last_stage_update'] = now
             # reset kanban state when changing stage
@@ -679,7 +741,8 @@ class Task(models.Model):
 
         # add follower
         if vals.get('support_ids'):
-            self.message_subscribe([support['id'] for support in self.resolve_2many_commands('support_ids', vals['support_ids'], ['id'])])
+            self.message_subscribe_users([support['id'] for support in self.resolve_2many_commands('support_ids', vals['support_ids'], ['id'])])
+
         return result
 
 

@@ -32,26 +32,26 @@
         <record id="thmdocument_stage_1" model="thmdocument.task.type">
             <field name="sequence">2</field>
             <field name="name">Lanh Dao Don Vi</field>
-            <field name="legend_blocked">Need functional or technical help</field>
-            <field name="legend_done">Buzz or set as done</field>
+            <field name="legend_blocked">Từ chối</field>
+            <field name="legend_done">Sẵn sàng</field>
         </record>
         <record id="thmdocument_stage_2" model="thmdocument.task.type">
             <field name="sequence">3</field>
             <field name="name">Van Thu</field>
-            <field name="legend_blocked">Need functional or technical help</field>
-            <field name="legend_done">Buzz or set as done</field>
+            <field name="legend_blocked">Từ chối</field>
+            <field name="legend_done">Sẵn sàng</field>
         </record>
         <record id="thmdocument_stage_3" model="thmdocument.task.type">
             <field name="sequence">4</field>
             <field name="name">Thu Ki Chuyen Mon</field>
-            <field name="legend_blocked">Need functional or technical help</field>
-            <field name="legend_done">Buzz or set as done</field>
+            <field name="legend_blocked">Từ chối</field>
+            <field name="legend_done">Sẵn sàng</field>
         </record>
         <record id="thmdocument_stage_4" model="thmdocument.task.type">
             <field name="sequence">5</field>
             <field name="name">CT - TGD</field>
-            <field name="legend_blocked">Need functional or technical help</field>
-            <field name="legend_done">Buzz or set as done</field>
+            <field name="legend_blocked">Từ chối</field>
+            <field name="legend_done">Phê chuẩn</field>
         </record>
         <record id="thmdocument_stage_5" model="thmdocument.task.type">
             <field name="sequence">6</field>
