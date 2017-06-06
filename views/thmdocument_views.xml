@@ -59,10 +59,10 @@
             <field name="search_view_id" ref="view_task_search_form"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Here, you can create new tasks
+                    Bạn có thể tạo tờ trình mới tại đây.
                 </p>
                 <p>
-                    You can now manage your tasks in order to get things done efficiently. Track progress, discuss, attach documents, etc.
+                    Bây giờ bạn có thể quản lý tờ trình để các công việc có thể hoàn thành một cách tốt nhất. Theo dõi tiến độ, thảo luận, đính kèm tài liệu...
                 </p>
             </field>
         </record>
@@ -395,7 +395,7 @@ action = model.activate_sample_thmdocument()
                             <div class="oe_clear"/>
                         </page>
                         <page name="de_xuat_page" string="De xuat thu ky"
-                              groups="thmdocument.group_thmdocument_chu_tich,thmdocument.group_thmdocument_thu_ky_cm">
+                              groups="thmdocument.group_thmdocument_chu_tich,thmdocument.group_thmdocument_thu_ky_cm,thmdocument.group_thmdocument_van_thu">
                             <field name="de_xuat" type="html"/>
                             <div class="oe_clear"/>
                         </page>
@@ -594,7 +594,7 @@ action = model.activate_sample_thmdocument()
             <field name="search_view_id" ref="view_task_search_form"/>
             <field name="help" type="html">
                 <p>
-                    Odoo's thmdocument management allows you to manage the pipeline of your tasks efficiently. You can track progress, discuss on tasks, attach documents, etc.
+                    Ứng dụng quản lý văn bản tờ trình nội bộ cho phép bạn quản lý các luồng chuyền một cách hiệu quả. Theo dõi, thảo luận, đính kèm tài liệu...
                 </p>
             </field>
         </record>
