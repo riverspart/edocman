@@ -2,16 +2,16 @@
 <odoo>
 
         <!-- Top menu item -->
-        <menuitem name="Thmdocument"
+        <menuitem name="Văn bản"
             id="menu_main_pm"
             groups="group_thmdocument_manager,group_thmdocument_user"
             web_icon="thmdocument,static/description/icon.png"
             sequence="50"/>
 
-        <menuitem name="Search"
-            id="menu_thmdocument_management"
-            parent="menu_main_pm"
-            sequence="2" groups="base.group_no_one,group_thmdocument_user"/>
+        <!--<menuitem name="Tìm kiếm"-->
+            <!--id="menu_thmdocument_management"-->
+            <!--parent="menu_main_pm"-->
+            <!--sequence="2" groups="base.group_no_one,group_thmdocument_user"/>-->
 
         <menuitem id="menu_thmdocument_config" name="Configuration" parent="menu_main_pm"
             sequence="100" groups="thmdocument.group_thmdocument_manager"/>
@@ -79,7 +79,7 @@
                         <button  class="oe_stat_button" name="attachment_tree_view" type="object" icon="fa-files-o">
                             <field string="Documents" name="doc_count" widget="statinfo"/>
                         </button>
-                        <button class="oe_stat_button" type="action" attrs="{'invisible':[('use_tasks','=', False)]}"
+                        <button class="oe_stat_button" type="action" attrs="{'invisible':[('thmdocument_use_tasks','=', False)]}"
                             name="%(act_thmdocument_thmdocument_2_thmdocument_task_all)d" icon="fa-tasks">
                             <field string="Tasks" name="task_count" widget="statinfo" options="{'label_field': 'label_tasks'}"/>
                         </button>
@@ -96,10 +96,10 @@
                         </h1>
                         <div name="options_active" class="oe_edit_only">
                             <div>
-                                <field name="use_tasks" class="oe_inline"/>
-                                <label for="use_tasks" class="oe_inline" string="Tasks"/>
-                                <span attrs="{'invisible':[('use_tasks', '=', False)]}">as </span>
-                                <field name="label_tasks" class="oe_inline oe_input_align" attrs="{'invisible': [('use_tasks', '=', False)]}"/>
+                                <field name="thmdocument_use_tasks" class="oe_inline"/>
+                                <label for="thmdocument_use_tasks" class="oe_inline" string="Tasks"/>
+                                <span attrs="{'invisible':[('thmdocument_use_tasks', '=', False)]}">as </span>
+                                <field name="label_tasks" class="oe_inline oe_input_align" attrs="{'invisible': [('thmdocument_use_tasks', '=', False)]}"/>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                 </div>
                             </group>
                             <group name='options' invisible="1">
-                                <field name="use_tasks"/>
+                                <field name="thmdocument_use_tasks"/>
                             </group>
                         </group>
                         <footer>
@@ -212,7 +212,7 @@
         </record>
 
         <record id="open_create_thmdocument" model="ir.actions.act_window">
-            <field name="name">Create a Thmdocument</field>
+            <field name="name">Tạo một văn bản mới</field>
             <field name="res_model">thmdocument.thmdocument</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
@@ -226,7 +226,7 @@
             <field name="arch" type="xml">
                 <kanban class="oe_background_grey o_kanban_dashboard o_thmdocument_kanban" on_create="thmdocument.open_create_thmdocument">
                     <field name="name"/>
-                    <field name="use_tasks"/>
+                    <field name="thmdocument_use_tasks"/>
                     <field name="color"/>
                     <field name="task_count"/>
                     <field name="task_needaction_count"/>
@@ -255,7 +255,7 @@
                                             <div groups="thmdocument.group_thmdocument_manager">
                                                 <a type="edit">Settings</a>
                                             </div>
-                                            <div attrs="{'invisible': [('use_tasks', '=', False)]}">
+                                            <div attrs="{'invisible': [('thmdocument_use_tasks', '=', False)]}">
                                                 <a name="%(thmdocument.action_thmdocument_task_user_tree_filtered)d" type="action">Tờ trình</a>
                                             </div>
                                         </div>
@@ -270,7 +270,7 @@
                                 </div>
 
                                 <div class="o_thmdocument_kanban_boxes">
-                                    <div t-if="record.use_tasks.raw_value" class="o_thmdocument_kanban_box">
+                                    <div t-if="record.thmdocument_use_tasks.raw_value" class="o_thmdocument_kanban_box">
                                         <a name="%(act_thmdocument_thmdocument_2_thmdocument_task_all)d" type="action">
                                             <span class="o_value"><t t-esc="record.task_count.value"/></span>
                                             <span class="o_label"><t t-esc="record.label_tasks.value"/></span>
@@ -294,7 +294,7 @@
         </record>
 
         <record id="activate_sample_thmdocument" model="ir.actions.server">
-            <field name="name">Activate Sample Thmdocument</field>
+            <field name="name">Tạo văn bản mẫu</field>
             <field name="model_id" ref="thmdocument.model_thmdocument_thmdocument"/>
             <field name="code">
 action = model.activate_sample_thmdocument()
@@ -311,14 +311,14 @@ action = model.activate_sample_thmdocument()
             <field name="target">main</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Click to create a new thmdocument.<br/>
-                    <i>Or <a type="action" name="%(thmdocument.activate_sample_thmdocument)d">activate a sample thmdocument</a> to play with.</i>
+                    Click vào đây để tạo mới văn bản.<br/>
+                    <i>Hoặc <a type="action" name="%(thmdocument.activate_sample_thmdocument)d">tạo một văn bản mẫu</a> để trải nghiệm.</i>
                 </p>
             </field>
         </record>
 
         <record id="open_view_thmdocument_all_config" model="ir.actions.act_window">
-            <field name="name">Thmdocuments</field>
+            <field name="name">Văn bản</field>
             <field name="res_model">thmdocument.thmdocument</field>
             <field name="view_type">form</field>
             <field name="domain">[]</field>
@@ -327,9 +327,9 @@ action = model.activate_sample_thmdocument()
             <field name="context">{}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Create a new thmdocument.
+                    Tạo mới một văn bản.
                 </p><p>
-                    Organize your activities (plan tasks, track issues, invoice timesheets) for internal, personal or customer thmdocuments.
+                    Sắp xếp các công việc (nhập và chuyển tờ trình, theo dõi quá trình xử lý và quản lý thời gian xử lý tờ trình)
                 </p>
             </field>
         </record>
@@ -362,7 +362,7 @@ action = model.activate_sample_thmdocument()
                     </div>
                     <group>
                         <group>
-                            <field name="thmdocument_id" domain="[('active', '=', True)]" context="{'default_use_tasks':1}"/>
+                            <field name="thmdocument_id" domain="[('active', '=', True)]" context="{'default_thmdocument_use_tasks':1}"/>
                             <field name="user_id" class="o_task_user_field" options='{"no_open": True}'/>
                             <field name="support_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
                             <field name="date_assign" groups="base.group_no_one"/>
@@ -376,13 +376,12 @@ action = model.activate_sample_thmdocument()
                         <group>
                             <field name="code"/>
                             <field name="code_office"/>
-                            <!--<field name="linh_vuc_id" options='{"no_open": True, "no_create": True}'/>-->
                             <field name="phong_soan_thao"/>
                             <field name="don_vi_soan_thao" options='{"no_open": True, "no_create": True}'/>
                         </group>
                     </group>
                     <notebook>
-                        <page name="trich_yeu_page" string="Trich yeu to trinh">
+                        <page name="trich_yeu_page" string="Trích yếu">
                             <field name="trich_yeu" type="html"/>
                             <div class="oe_clear"/>
                         </page>
@@ -609,7 +608,7 @@ action = model.activate_sample_thmdocument()
             <field name="act_window_id" ref="action_view_task"/>
         </record>
 
-        <menuitem action="action_view_task" id="menu_action_view_task" parent="thmdocument.menu_thmdocument_management" sequence="5"/>
+        <!--<menuitem action="action_view_task" id="menu_action_view_task" parent="thmdocument.menu_thmdocument_management" sequence="5"/>-->
 
         <record id="action_view_task_overpassed_draft" model="ir.actions.act_window">
             <field name="name">Overpassed Tasks</field>
@@ -729,7 +728,9 @@ action = model.activate_sample_thmdocument()
 
         <menuitem action="open_task_type_form" id="menu_thmdocument_config_thmdocument" name="Stages" parent="menu_thmdocument_config" sequence="3" groups="group_thmdocument_manager"/>
 
-        <menuitem action="open_view_thmdocument_all" id="menu_thmdocuments" name="Dashboard" parent="menu_main_pm" sequence="1"/>
+        <menuitem action="open_view_thmdocument_all" id="menu_thmdocuments" name="Quản lý văn bản" parent="menu_main_pm" sequence="2"/>
+        <menuitem action="action_view_task" id="menu_thmdocuments_totrinh" name="Tờ trình nội bộ" parent="menu_main_pm" sequence="1"/>
+
         <menuitem action="open_view_thmdocument_all_config" id="menu_thmdocuments_config" name="Thmdocuments" parent="menu_thmdocument_config" sequence="10"/>
 
         <!-- User Form -->
@@ -772,14 +773,14 @@ action = model.activate_sample_thmdocument()
         <menuitem action="thmdocument_tags_action" id="menu_thmdocument_tags_act" parent="menu_thmdocument_config" groups="base.group_no_one"/>
 
         <!-- Reporting menus -->
-        <menuitem id="menu_thmdocument_report" name="Reports"
-            groups="thmdocument.group_thmdocument_manager"
-            parent="menu_main_pm" sequence="99"/>
+        <!--<menuitem id="menu_thmdocument_report" name="Reports"-->
+            <!--groups="thmdocument.group_thmdocument_manager"-->
+            <!--parent="menu_main_pm" sequence="99"/>-->
 
-        <menuitem id="menu_thmdocument_report_task_analysis"
-            name="Tasks Analysis"
-            action="thmdocument.action_thmdocument_task_user_tree"
-            parent="menu_thmdocument_report"
-            sequence="10"/>
+        <!--<menuitem id="menu_thmdocument_report_task_analysis"-->
+            <!--name="Tasks Analysis"-->
+            <!--action="thmdocument.action_thmdocument_task_user_tree"-->
+            <!--parent="menu_thmdocument_report"-->
+            <!--sequence="10"/>-->
 
 </odoo>

@@ -71,12 +71,16 @@ class Thmdocument(models.Model):
         analytic_accounts_to_delete = self.env['account.analytic.account']
         for thmdocument in self:
             if thmdocument.tasks:
-                raise UserError(_('You cannot delete a thmdocument containing tasks. You can either delete all the thmdocument\'s tasks and then delete the thmdocument or simply deactivate the thmdocument.'))
+                raise UserError(_(u'Không thể xóa văn bản có chứa giấy tờ liên quan như tờ trình... Bạn phải xóa các giấy tờ liên quan trước hoặc đơn giản là ẩn nó đi.'))
             if thmdocument.analytic_account_id and not thmdocument.analytic_account_id.line_ids:
                 analytic_accounts_to_delete |= thmdocument.analytic_account_id
         res = super(Thmdocument, self).unlink()
         analytic_accounts_to_delete.unlink()
         return res
+
+    # @api.model
+    # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
+    #     a = 1
 
     def _compute_attached_docs_count(self):
         Attachment = self.env['ir.attachment']
@@ -106,7 +110,7 @@ class Thmdocument(models.Model):
     @api.model
     def _get_alias_models(self):
         """ Overriden in thmdocument_issue to offer more options """
-        return [('thmdocument.task', "Tasks")]
+        return [('thmdocument.task', u"Tờ trình")]
 
     @api.multi
     def attachment_tree_view(self):
@@ -123,10 +127,9 @@ class Thmdocument(models.Model):
             'view_id': False,
             'view_mode': 'kanban,tree,form',
             'view_type': 'form',
-            'help': _('''<p class="oe_view_nocontent_create">
-                        Documents are attached to the tasks and issues of your thmdocument.</p><p>
-                        Send messages or log internal notes with attachments to link
-                        documents to your thmdocument.
+            'help': _(u'''<p class="oe_view_nocontent_create">
+                        Giấy tờ tài liệu được đính kèm thêm vào văn bản và các tờ trình.</p><p>
+                        Gửi thông báo hoặc ghi chú nội bộ cùng giấy tờ đính kèm để liên kết với tờ trình.
                     </p>'''),
             'limit': 80,
             'context': "{'default_res_model': '%s','default_res_id': %d}" % (self._name, self.id)
@@ -151,7 +154,7 @@ class Thmdocument(models.Model):
         action_data = None
         if action:
             action.sudo().write({
-                "help": _('''<p class="oe_view_nocontent_create">Click to create a new thmdocument.</p>''')
+                "help": _(u'''<p class="oe_view_nocontent_create">Click để tạo văn bản mới.</p>''')
             })
             action_data = action.read()[0]
         # Reload the dashboard
@@ -167,8 +170,11 @@ class Thmdocument(models.Model):
     @api.model
     def default_get(self, flds):
         result = super(Thmdocument, self).default_get(flds)
-        result['use_tasks'] = True
+        result['thmdocument_use_tasks'] = True
         return result
+
+    # 0: Tờ trình
+    _type = fields.Integer(default=0, invisible=True)
 
     # Lambda indirection method to avoid passing a copy of the overridable method when declaring the field
     _alias_models = lambda self: self._get_alias_models()
@@ -186,7 +192,7 @@ class Thmdocument(models.Model):
         string='Members')
     is_favorite = fields.Boolean(compute='_compute_is_favorite', string='Show Thmdocument on dashboard',
         help="Whether this thmdocument should be displayed on the dashboard or not")
-    label_tasks = fields.Char(string='Use Tasks as', default='Tasks', help="Gives label to tasks on thmdocument's kanban view.")
+    label_tasks = fields.Char(string='Use Tasks as', default=u'Tờ trình', help="Gives label to tasks on thmdocument's kanban view.")
     tasks = fields.One2many('thmdocument.task', 'thmdocument_id', string="Task Activities")
     resource_calendar_id = fields.Many2one('resource.calendar', string='Working Time',
         help="Timetable working hours to adjust the gantt diagram report")
@@ -305,10 +311,6 @@ class Task(models.Model):
         return result
 
     @api.model
-    # def default_linh_vuc_id(self):
-    #     return 7
-
-    @api.model
     def default_dapartment_code(self):
          employee = self.env['hr.employee'].search([('user_id', '=', self.env.uid)])
          code = ''
@@ -397,10 +399,7 @@ class Task(models.Model):
                               string='Nguoi tao',
                               default=lambda self: self.env.uid,
                               index=True, track_visibility='always' , readonly=True)
-    # linh_vuc_id = fields.Many2one('thmdocument.field',
-    #                              string='Linh Vuc',
-    #                              required=False,
-    #                              default=default_linh_vuc_id, track_visibility='always')
+
     phong_soan_thao = fields.Char(string='Phong soan thao', required=False, index=True, default='')
     don_vi_soan_thao = fields.Many2one('hr.department',
                                  string='Don vi soan thao',
@@ -784,11 +783,11 @@ class Task(models.Model):
         self.ensure_one()
         if not self.user_id:
             take_action = self._notification_link_helper('assign')
-            thmdocument_actions = [{'url': take_action, 'title': _('I take it')}]
+            thmdocument_actions = [{'url': take_action, 'title': _(u'Tôi tiếp nhận nó')}]
         else:
             new_action_id = self.env.ref('thmdocument.action_view_task').id
             new_action = self._notification_link_helper('new', action_id=new_action_id)
-            thmdocument_actions = [{'url': new_action, 'title': _('New Task')}]
+            thmdocument_actions = [{'url': new_action, 'title': _(u'Tờ trình mới')}]
 
         new_group = (
             'group_thmdocument_user', lambda partner: bool(partner.user_ids) and any(user.has_group('thmdocument.group_thmdocument_user') for user in partner.user_ids), {
@@ -882,19 +881,19 @@ class Task(models.Model):
         res['headers'] = repr(headers)
         return res
     _sql_constraints = [
-        ('code_uniq', 'unique (code)', 'Ma to trinh da co!'),
+        ('code_uniq', 'unique (code)', u'Mã tờ trình đã có!'),
     ]
 
 class AccountAnalyticAccount(models.Model):
+
     _inherit = 'account.analytic.account'
     _description = 'Analytic Account'
 
-    use_tasks = fields.Boolean(string='Use Tasks',
-                               help="Check this box to manage internal activities through this thmdocument")
+    thmdocument_use_tasks = fields.Boolean(string=u'Tờ trình sử dụng',
+                               help=u"Tích vào ô này để quản lý các hoạt động trong văn bản này")
 
-
-    company_uom_id = fields.Many2one('product.uom', related='company_id.thmdocument_time_mode_id', string="Company UOM")
-    thmdocument_ids = fields.One2many('thmdocument.thmdocument', 'analytic_account_id', string='Loai van ban')
+    thmdocument_company_uom_id = fields.Many2one('product.uom', related='company_id.thmdocument_time_mode_id', string="Company UOM")
+    thmdocument_ids = fields.One2many('thmdocument.thmdocument', 'analytic_account_id', string=u'Loại văn bản')
     thmdocument_count = fields.Integer(compute='_compute_thmdocument_count', string='Thmdocument Count')
 
     def _compute_thmdocument_count(self):
@@ -906,7 +905,7 @@ class AccountAnalyticAccount(models.Model):
         '''
         This function is used to decide if a thmdocument needs to be automatically created or not when an analytic account is created. It returns True if it needs to be so, False otherwise.
         '''
-        return vals.get('use_tasks') and 'thmdocument_creation_in_progress' not in self.env.context
+        return vals.get('thmdocument_use_tasks') and 'thmdocument_creation_in_progress' not in self.env.context
 
     @api.multi
     def thmdocument_create(self, vals):
@@ -920,7 +919,7 @@ class AccountAnalyticAccount(models.Model):
             thmdocument_values = {
                 'name': vals.get('name'),
                 'analytic_account_id': self.id,
-                'use_tasks': True
+                'thmdocument_use_tasks': True
             }
             return Thmdocument.create(thmdocument_values).id
         return False
@@ -978,11 +977,11 @@ class AccountAnalyticAccount(models.Model):
 class ThmdocumentTags(models.Model):
     """ Tags of thmdocument's tasks (or issues) """
     _name = "thmdocument.tags"
-    _description = "Tags of thmdocument's tasks, issues..."
+    _description = u"Các thẻ tag của văn bản, tờ trình..."
 
     name = fields.Char(required=True)
-    color = fields.Integer(string='Color Index')
+    color = fields.Integer(string=u'Chỉ số màu')
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', "Tag name already exists !"),
+        ('name_uniq', 'unique (name)', u"Tag đã tồn tại!"),
     ]
