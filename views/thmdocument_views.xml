@@ -447,7 +447,7 @@ action = model.activate_sample_thmdocument()
             <field name="name">thmdocument.task.kanban</field>
             <field name="model">thmdocument.task</field>
             <field name="arch" type="xml">
-                <kanban quick_create="false" create="true" class="o_kanban_small_column o_kanban_thmdocument_tasks">
+                <kanban quick_create="false" class="o_kanban_small_column o_kanban_thmdocument_tasks">
                     <field name="color"/>
                     <field name="priority"/>
                     <field name="stage_id" options='{"group_by_tooltip": {"description": "Stage Description", "legend_priority": "Use of stars"}}'/>
